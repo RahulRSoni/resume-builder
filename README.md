@@ -68,3 +68,21 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+librarise //
+
+1. npx create-react-app resume-builder
+2. npm install @mui/material @emotion/react @emotion/styled
+3. npm install @mui/material @mui/styled-engine-sc styled-components
+4. npm install @mui/icons-material
+5. npm install react-hook-form
+6. npm i react-router-dom
+7. npm install react-redux
+8. npm i react-router
+
+CDN //
+
+1. <link  rel="stylesheet" href="https://fonts.googleapis.com/css?amily=Roboto:300,400,500,700&display=swap"/>
+2. <link  rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>

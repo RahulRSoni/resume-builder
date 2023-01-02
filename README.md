@@ -84,5 +84,5 @@ librarise //
 
 CDN //
 
-<!-- 1. <link  rel="stylesheet" href="https://fonts.googleapis.com/css?amily=Roboto:300,400,500,700&display=swap"/> -->
-<!-- 2. <link  rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/> -->
+1. <link  rel="stylesheet" href="https://fonts.googleapis.com/css?amily=Roboto:300,400,500,700&display=swap"/>
+2. <link  rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>

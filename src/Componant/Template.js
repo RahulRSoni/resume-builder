@@ -4,7 +4,7 @@ import Paper from '@mui/material/Paper';
 
 const Template = () => {
   return (
-    <div className='container'>
+    < >
       
           <Box
               sx={{
@@ -22,7 +22,7 @@ const Template = () => {
               <Paper elevation={3} />
               <Paper elevation={3} />
           </Box>
-    </div>
+    </>
   )
 }
 

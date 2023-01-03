@@ -7,22 +7,28 @@ import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+// import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 import Logo from "./Assets/Logo.png"
 
-const drawerWidth = 240;
-const navItems = ['Resume Templates', 'My Resume', 'About Us'];
 
 function Navbar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+
+  const style = {
+    textDecoration: "none",
+     margin: "15px",
+  };
+
+  const style2 = {
+    textDecoration: "none",
+    color:"black",
+  };
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -30,18 +36,29 @@ function Navbar(props) {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
-      </Typography>
+      <Box
+        sx={{ my: 2, display: { xs: 'block', sm: 'block' } }}>
+        <Link to="/">
+          <img src={Logo} alt="Logo" width="auto" height="35" />
+        </Link>
+      </Box>
       <Divider />
       <List>
-        {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText primary={item} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+          <ListItemButton>
+          <Link to="/templates" underline="none" style={style2}>
+            <ListItemText primary="Resume Templates" />
+            </Link>
+          </ListItemButton>
+          <ListItemButton>
+          <Link to="/myresume" underline="none" style={style2}>
+            <ListItemText primary="My Resume" />
+            </Link>
+          </ListItemButton>
+          <ListItemButton>
+          <Link to="/about" underline="none" style={style2}>
+            <ListItemText primary="About Us" />
+          </Link>
+          </ListItemButton>
       </List>
     </Box>
   );
@@ -49,7 +66,7 @@ function Navbar(props) {
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{display:'flex'}}>
+    <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar component="nav" color='default'>
         <Toolbar>
@@ -62,20 +79,27 @@ function Navbar(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Button
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}>
+          <Box
+            sx={{ flexGrow: 1, my: 2, display: { xs: 'block', sm: 'block' } }}>
             <Link to="/">
-              <img src={Logo} alt="Logo" width="auto" height="35"  />
+              <img src={Logo} alt="Logo" width="auto" height="35" />
             </Link>
-          </Button>
-          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            {navItems.map((item) => (
-              <Button key={item} sx={{ color: 'black' }}>
-                {item}
-              </Button>
-            ))}
+
           </Box>
+          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+            <Link to="/templates" underline="none" style={style}>
+              Resume Templates
+              </Link>
+            <Link to="/myresume" underline="none" style={style}>
+              My Resume
+            </Link>
+            <Link to="/about" underline="none" style={style}>
+              About Us
+            </Link>
+          </Box>
+
         </Toolbar>
+
       </AppBar>
       <Box component="nav">
         <Drawer
@@ -88,7 +112,7 @@ function Navbar(props) {
           }}
           sx={{
             display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 240 },
           }}
         >
           {drawer}
@@ -96,9 +120,9 @@ function Navbar(props) {
       </Box>
       <Box component="main" sx={{ p: 3 }}>
         <Toolbar />
-        <Typography>
-          
-        </Typography>
+
+
+
       </Box>
     </Box>
   );

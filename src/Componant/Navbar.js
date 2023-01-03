@@ -45,10 +45,12 @@ function Navbar(props) {
       <Divider />
       <List>
           <ListItemButton>
+      
           <Link to="/templates" underline="none" style={style2}>
             <ListItemText primary="Resume Templates" />
             </Link>
           </ListItemButton>
+          
           <ListItemButton>
           <Link to="/myresume" underline="none" style={style2}>
             <ListItemText primary="My Resume" />
@@ -68,7 +70,7 @@ function Navbar(props) {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar component="nav" color='default'>
+      <AppBar position= "fixed" component="nav" color='default' sx={{height:55}}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -86,16 +88,20 @@ function Navbar(props) {
             </Link>
 
           </Box>
-          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            <Link to="/templates" underline="none" style={style}>
+          <Box sx={{ display: { xs: 'none', sm: 'block' }, }}>
+
+            <Link to="/templates" underline="none" style={style} >
               Resume Templates
               </Link>
+
             <Link to="/myresume" underline="none" style={style}>
               My Resume
             </Link>
+
             <Link to="/about" underline="none" style={style}>
               About Us
             </Link>
+
           </Box>
 
         </Toolbar>

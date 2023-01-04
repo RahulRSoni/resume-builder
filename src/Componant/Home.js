@@ -133,7 +133,6 @@ export default function Home() {
               About Us
             </Link>
           </ListItem>
-          ,
         </List>
       </Box>
     </>

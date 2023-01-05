@@ -8,12 +8,11 @@ function App() {
   return(
   <div>
       <Navbar/>
-      <Aboutus/>
       <Routes>
         <Route exact path="/" element={<Home />}></Route>
         <Route exact path="/templates" element={<Navbar />}></Route>
         <Route exact path="/myresume" element={<Navbar />}></Route>
-        <Route exact path="/about" element={<Navbar />}></Route>
+        <Route exact path="/about" element={<Aboutus />}></Route>
       </Routes>
   </div>
   ) 

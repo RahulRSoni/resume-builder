@@ -1,12 +1,14 @@
 import Navbar from './Componant/Navbar';
 import { Routes, Route } from "react-router-dom";
 import Home from './Componant/Home';
+import Aboutus from './Componant/Aboutus';
 
 
 function App() {
   return(
   <div>
       <Navbar/>
+      <Aboutus/>
       <Routes>
         <Route exact path="/" element={<Home />}></Route>
         <Route exact path="/templates" element={<Navbar />}></Route>

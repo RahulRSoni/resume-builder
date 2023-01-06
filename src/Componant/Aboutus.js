@@ -9,11 +9,13 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import EmailIcon from '@mui/icons-material/Email';
 import IconButton from "@mui/material/IconButton";
-import { Link } from "react-router-dom";
+import Link from '@mui/material/Link'
+
 
 
 
 const Aboutus = () => {
+
   return (
     <>
       <Box sx={{ display: "flex", ml: 6 }}>
@@ -35,29 +37,31 @@ const Aboutus = () => {
               Share with your friends
             </Typography>
 
-            <IconButton color="primary" component="label"sx={{padding:2}}>
-              <Link to="/templates">
-                <WhatsAppIcon />   
+            <IconButton color="primary" component="label" sx={{ padding: 2 }}>
+              <Link href="https://web.whatsapp.com/" target="_blank" rel="noopener">
+                <WhatsAppIcon />
               </Link>
             </IconButton>
-            <IconButton color="primary" component="label" sx={{padding:2}}>
-              <Link to="/https://www.facebook.com/">
-                <LinkedInIcon/> 
+
+            <IconButton color="primary" component="label" sx={{ padding: 2 }}>
+              <Link href="https://www.linkedin.com/" target="_blank" rel="noopener">
+                <LinkedInIcon />
               </Link>
             </IconButton>
-            <IconButton color="primary" component="label" sx={{padding:2}}>
-              <Link to="/templates">
-                <FacebookIcon/> 
+
+            <IconButton color="primary" component="label" sx={{ padding: 2 }}>
+              <Link href="https://www.facebook.com" target="_blank" rel="noopener">
+                <FacebookIcon />
               </Link>
             </IconButton>
-            <IconButton color="primary" component="label"sx={{padding:3}}>
-              <Link to="/templates">
-          <TwitterIcon/> 
-          <IconButton color="primary" component="label" sx={{padding:3}}>
-              <Link to="/templates">
-                 <EmailIcon/>
+            <IconButton color="primary" component="label" sx={{ padding: 3 }}>
+              <Link href="https://twitter.com/login?lang=en" target="_blank" rel="noopener">
+                <TwitterIcon />
               </Link>
             </IconButton>
+            <IconButton color="primary" component="label" sx={{ padding: 3 }}>
+              <EmailIcon />
+              <Link href="https://mail.google.com/mail/u/0/" target="_blank" rel="noopener">
               </Link>
             </IconButton>
           </Grid>

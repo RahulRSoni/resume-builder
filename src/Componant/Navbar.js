@@ -16,6 +16,7 @@ import { Link } from 'react-router-dom';
 import Logo from "./Assets/Logo.png"
 
 
+
 function Navbar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -101,7 +102,7 @@ function Navbar(props) {
             <Link to="/about" underline="none" style={style}>
               About Us
             </Link>
-
+           
           </Box>
 
         </Toolbar>
@@ -131,6 +132,10 @@ function Navbar(props) {
 
       </Box>
     </Box>
+
+
+
+
   );
 }
 

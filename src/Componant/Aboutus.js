@@ -2,7 +2,7 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { Typography } from "@mui/material";
-import Aboutimg from "./Assets/Aboutimg.jpg";
+import Aboutimg from "../Assets/Aboutimg.jpg";
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -10,7 +10,7 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import EmailIcon from '@mui/icons-material/Email';
 import IconButton from "@mui/material/IconButton";
 import Link from '@mui/material/Link'
-import ul from "./Assets/ul.png";
+import ul from "../Assets/ul.png";
 
 const Aboutus = () => {
   return (

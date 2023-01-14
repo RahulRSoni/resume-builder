@@ -1,69 +1,81 @@
+import { Box } from '@mui/system';
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import Typography from '@mui/material/Typography';
+import img1 from "../../Assets/Template/C1.png"
+import img3 from "../../Assets/Template/C2.png"
+import img2 from "../../Assets/Template/C3.png"
+import img4 from "../../Assets/Template/C4.png"
+import img5 from "../../Assets/Template/M1.jpg"
+import img6 from "../../Assets/Template/M2.jpg"
+import img7 from "../../Assets/Template/M3.png"
+import img8 from "../../Assets/Template/M4.png"
+import img9 from "../../Assets/Template/P1.png"
+import img10 from "../../Assets/Template/P2.png"
+import img11 from "../../Assets/Template/P3.png"
+import img12 from "../../Assets/Template/P4.png"
 
 
 const images = [
   {
-    url: 'C:/Users/rahul/Videos/Resume-builder/resume-builder/src/Assets/Template/M3.png ',
-    title: 'image1',
+    url: `${img1}`,
+    title: 'Use Template',
     width: '24%',
   },
   {
-    url: '/static/media/C2.792df2f4.png',
-    title: 'image2',
+    url: `${img2}`,
+    title: 'Use Template',
     width: '24%',
   },
   {
-    url: '/static/media/C3.fb04863b.png',
-    title: 'image3',
+    url: `${img3}`,
+    title: 'Use Template',
     width: '24%',
   },
   {
-    url: '/static/media/C4.9295ed20.png',
-    title: 'image4',
+    url: `${img4}`,
+    title: 'Use Template',
     width: '24%',
   },
   {
-    url: '/static/media/M1.5ab6fa21.jpg',
-    title: 'image1',
+    url: `${img5}`,
+    title: 'Use Template',
     width: '24%',
   },
   {
-    url: '/static/media/M2.b9884756.jpg',
-    title: 'image2',
+    url: `${img6}`,
+    title: 'Use Template',
     width: '24%',
   },
   {
-    url: '/static/media/M3.27de647f.png',
-    title: 'image3',
+    url: `${img7}`,
+    title: 'Use Template',
     width: '24%',
   },
   {
-    url: '/static/media/M4.121ed14d.png',
-    title: 'image4',
+    url: `${img8}`,
+    title: 'Use Template',
     width: '24%',
   },
   {
-    url: '/static/media/P1.0a3481f9.png',
-    title: 'image1',
+    url: `${img9}`,
+    title: 'Use Template',
     width: '24%',
   },
   {
-    url: '/static/media/P2.941e90f9.png',
-    title: 'image2',
+    url: `${img10}`,
+    title: 'Use Template',
     width: '24%',
   },
   {
-    url: '/static/media/P3.3f989501.png',
-    title: 'image3',
+    url: `${img11}`,
+    title: 'Use Template',
     width: '24%',
   },
   {
-    url: '/static/media/P4.dff1012d.png',
-    title: 'image4',
+    url: `${img12}`,
+    title: 'Use Template',
     width: '24%',
   },
 ];
@@ -133,7 +145,6 @@ const ImageMarked = styled('span')(({ theme }) => ({
 }));
 
 export default function Temp1() {
-
   return (
     <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: "space-evenly", width: "99%", gap: 2, m: 1 }}>
       {images.map((image, i) => (
@@ -165,5 +176,5 @@ export default function Temp1() {
         </ImageButton>
       ))}
     </Box>
-  );
-}
+  )
+}  

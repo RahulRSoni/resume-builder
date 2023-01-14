@@ -69,7 +69,7 @@ function Navbar(props) {
   const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex', p:4 }}>
       <CssBaseline />
       <AppBar position= "fixed" component="nav" color='default' sx={{height:55}}>
         <Toolbar>
@@ -125,17 +125,7 @@ function Navbar(props) {
           {drawer}
         </Drawer>
       </Box>
-      <Box component="main" sx={{ p: 3 }}>
-        <Toolbar />
-
-
-
-      </Box>
     </Box>
-
-
-
-
   );
 }
 

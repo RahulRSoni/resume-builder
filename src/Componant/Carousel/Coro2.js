@@ -1,7 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import { Typography } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 import Img2 from "../../Assets/img2.svg";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Button from '@mui/material/Button';
@@ -15,7 +15,7 @@ export default function Home() {
 
     return (
         <React.Fragment>
-            <Grid>
+            <Paper sx={{height:425}}>
                 <Grid container alignItems="center" justifyContent="space-evenly" flexDirection={{ xs: "column-reverse", md: 'row' }}>
                     <Grid item sm={12} md={6} lg={6} m={2}>
                         <Box >
@@ -38,12 +38,12 @@ export default function Home() {
                         </Box>
                     </Grid>
                     <Grid item sm={12} md={5} lg={5} m={2}>
-                        <Box>
+                        <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                             <img src={Img2} className="App-logo" alt="logo" height="400vh" width="500vh" />
                         </Box>
                     </Grid>
                 </Grid>
-            </Grid>
+            </Paper>
         </React.Fragment>
     );
 }

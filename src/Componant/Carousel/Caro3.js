@@ -1,7 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import { Typography } from "@mui/material";
+import { Paper,Typography } from "@mui/material";
 import Img3 from "../../Assets/img3.svg";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import Button from '@mui/material/Button';
@@ -15,9 +15,9 @@ export default function Home() {
     };
 
     return (
-        <>
-            <Grid>
-                <Grid container alignItems="center" justifyContent="space-evenly" flexDirection={{ xs: "column", md: 'row' }}>
+        <React.Fragment>
+            <Paper sx={{ height: 425 }}>
+                <Grid container alignItems="center" justifyContent="space-evenly" flexDirection={{ xs: "column", md: 'row' }} >
                     <Grid item sm={12} md={5} lg={5} m={2}>
                         <Box>
                             <img src={Img3} className="App-logo" alt="logo" height="400vh" width="500vh" />
@@ -27,14 +27,6 @@ export default function Home() {
                         <Box >
                             <Typography align="center" variant="h2">
                                 Chose Your Template & Build Your Resume
-                            </Typography>
-                            <Typography variant="h6" align="justify">
-                                <CheckIcon />
-                                10+ Professional Resume Templates
-                            </Typography>
-                            <Typography variant="body1" align="justify" ml={3}>
-                                Choose from over tem modern and professional templates. All of
-                                which can be customized to your liking.
                             </Typography>
                             <Typography variant="h6" align="justify">
                                 <CheckIcon />
@@ -70,7 +62,7 @@ export default function Home() {
                         </Box>
                     </Grid>
                 </Grid>
-            </Grid>
-        </>
+            </Paper>
+        </React.Fragment>
     );
 }

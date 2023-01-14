@@ -17,9 +17,10 @@ function App() {
         <Route exact path="/templates" element={<ResumeTemp />}></Route>
         <Route exact path="/myresume" element={<Navbar />}></Route>
         <Route exact path="/about" element={<Aboutus />}></Route>
+      
+
       </Routes>
       
-   
   </div>
   ) 
 }

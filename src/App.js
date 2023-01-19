@@ -2,7 +2,7 @@ import Navbar from './Componant/Navbar';
 import { Routes, Route } from "react-router-dom";
 import Home from './Componant/Home';
 import Aboutus from './Componant/Aboutus';
-import ResumeTemp from "./Componant/Templates/Temp1"
+import ResumeTemp from "./Componant/ResumeTemp"
 
 function App() {
   return (

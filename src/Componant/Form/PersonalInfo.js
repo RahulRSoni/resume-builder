@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect } from "react";
-import { Button, Box, Grid } from '@mui/material';
+import { Button, Box, Grid, Typography } from '@mui/material';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import Avatar from '@mui/material/Avatar';
 import TextField from '@mui/material/TextField';
@@ -8,13 +8,29 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
-const PersonalInfo = () => {
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
+const PersonalInfo = () => {
     const [value, setValue] = useState(null);
 
     const [selectedImage, setSelectedImage] = useState(null);
+
     const [imageUrl, setImageUrl] = useState(null);
 
+    const [gender, setGender] = React.useState('');
+
+    const handleChange = (event) => {
+        setGender(event.target.value);
+    };
+
+    const [marital, setMarital] = React.useState('');
+
+    const handleChangeMaterial = (event) => {
+        setMarital(event.target.value);
+    };
 
     useEffect(() => {
         if (selectedImage) {
@@ -24,7 +40,10 @@ const PersonalInfo = () => {
 
     return (
         <Grid container >
-            <Grid container display="flex" direction="column" justifyContent="flex-start" alignItems="center" item sm="auto">
+            <Box sx={{ width: "620px", maxWidth: '100%', p: 2 }}>
+                <Typography variant="h5">Personal Information</Typography>
+            </Box>
+            <Grid container display="flex" direction="column" justifyContent="flex-start" alignItems="center" item sm="auto" height="215px">
                 <Grid item>
                     <Avatar src="/broken-image.jpg" sizes="large" sx={{ width: 150, height: 150, }}>
                         {imageUrl && selectedImage && (
@@ -50,71 +69,99 @@ const PersonalInfo = () => {
                 </Grid>
                 <Grid container justifyContent="flex-start" alignItems="center" item sm={6}>
                     <Box sx={{ width: 400, maxWidth: '100%', }} >
-                        <TextField fullWidth label="Wanted Job Title" variant="standard" id="fullWidth" />
+                        <TextField fullWidth label="Wanted Job Title" variant="standard"  />
                     </Box>
+                </Grid>
+            </Grid>
+
+            <Grid container px={2} gap={2}>
+                <Grid container item display="flex" direction="row" spacing={2}>
+                    <Grid item sm={6}>
+                        <TextField fullWidth label="First Name" variant="standard"  />
+                    </Grid>
+                    <Grid item sm={6}>
+                        <TextField fullWidth label="Last Name" variant="standard"  />
+                    </Grid>
+                </Grid>
+
+                <Grid container item display="flex" direction="row" spacing={2} >
+                    <Grid item sm={6}>
+                        <TextField fullWidth label="Email" variant="standard"  />
+                    </Grid>
+                    <Grid item sm={6}>
+                        <TextField fullWidth label="Mobile or Phone" variant="standard"  />
+                    </Grid>
+                </Grid>
+
+                <Grid item >
+                    <Box sx={{ width: "620px", maxWidth: '100%', }} >
+                        <TextField fullWidth label="Address" variant="standard"  />
+                    </Box>
+                </Grid>
+
+                <Grid container item display="flex" direction="row" spacing={2} >
+                    <Grid item sm={6}>
+                        <TextField fullWidth label="City" variant="standard"  />
+                    </Grid>
+                    <Grid item sm={6}>
+                        <TextField fullWidth label="State" variant="standard"  />
+                    </Grid>
+                </Grid>
+
+                <Grid container item display="flex" direction="row" spacing={2} >
+                    <Grid item sm={6}>
+                        <TextField fullWidth label="Postal Code" variant="standard"  />
+                    </Grid>
+                    <Grid item sm={6}>
+                        <TextField fullWidth label="Country" variant="standard" />
+                    </Grid>
+                </Grid>
+
+                <Grid container item display="flex" justifyContent="flex-end" >
+                    <FormControl variant="standard" sx={{width:"25px", minWidth: "25%" }} size="small" label={'margin="dense"'}>
+                        <LocalizationProvider dateAdapter={AdapterDayjs} >
+                            <DatePicker label="DOB" value={value}
+                                onChange={(newValue) => { setValue(newValue); }}
+                                renderInput={(params) => <TextField {...params} variant="standard" fullWidth />} />
+                        </LocalizationProvider>
+                     </FormControl>
+                 </Grid>
+
+                <Grid container item display="flex" justifyContent="flex-end" >
+                    <FormControl variant="standard" sx={{ width: "25px", minWidth: "25%" }} size="small" label={'margin="dense"'}>
+                        <InputLabel id="gender-selection">Gender</InputLabel>
+                        <Select
+                            labelId="gender-selection"
+                            value={gender}
+                            onChange={handleChange}
+                            label="gender">
+                            <MenuItem value=""><em>none</em></MenuItem>
+                            <MenuItem value={5}>Male</MenuItem>
+                            <MenuItem value={10}>Female</MenuItem>
+                            <MenuItem value={15}>Other</MenuItem>
+                        </Select>
+                    </FormControl>
+                </Grid>
+
+                <Grid container item display="flex" justifyContent="flex-end">
+                    <FormControl variant="standard" sx={{ width: "25px", minWidth: "25%" }} size="small" label={'margin="dense"'}>
+                        <InputLabel id="gender-selection">Marital status</InputLabel>
+                        <Select
+                            labelId="gender-selection"
+                            value={marital}
+                            onChange={handleChangeMaterial}
+                            label="gender">
+                            <MenuItem value=""><em>none</em></MenuItem>
+                            <MenuItem value={5}>Single</MenuItem>
+                            <MenuItem value={10}>Married</MenuItem>
+                            <MenuItem value={15}>Divorced</MenuItem>
+                            <MenuItem value={20}>Widowed</MenuItem>
+                        </Select>
+                    </FormControl>
                 </Grid>
             </Grid>
         </Grid >
     )
 }
+
 export default PersonalInfo
-
-
-
-            // <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 1, md: 1 } }>
-            //     <Grid item sm={12} display="flex" direction="row">
-            //         <Grid item sm={6}>
-            //             <TextField label="First Name" variant="standard" />
-            //         </Grid>
-            //         <Grid item sm={6}>
-            //             <TextField label="Last Name" variant="standard" />
-            //         </Grid>
-            //     </Grid>
-
-            //     <Grid item sm={12} display="flex" direction="row">
-            //         <Grid item sm={6}>
-            //             <TextField label="Email" variant="standard" />
-            //         </Grid>
-            //         <Grid item sm={6}>
-            //             <TextField label="Mobile" variant="standard" />
-            //         </Grid>
-            //     </Grid>
-            //     <Grid item sm={12}>
-            //         <TextField label="Address" variant="standard" />
-            //     </Grid>
-
-
-
-            //     <Grid item sm={12} display="flex" direction="row">
-            //         <Grid item sm={6}>
-            //             <TextField label="City" variant="standard" />
-            //         </Grid>
-            //         <Grid item sm={6}>
-            //             <TextField label="State" variant="standard" />
-            //         </Grid>
-            //     </Grid>
-
-
-            //     <Grid item sm={12} display="flex" direction="row">
-            //         <Grid item sm={6}>
-            //         <TextField label="Postal Code" variant="standard" />
-            //     </Grid>
-            //         <Grid item sm={6}>
-            //         <LocalizationProvider dateAdapter={AdapterDayjs} >
-            //             <DatePicker label="Date Of Birth" value={value}
-            //                 onChange={(newValue) => { setValue(newValue); }}
-            //                 views={['day', 'month', 'year']}
-            //                 renderInput={(params) => <TextField {...params} variant="standard" />} />
-            //         </LocalizationProvider>
-            //         </Grid>
-            //     </Grid>
-            //     <Grid item sm={12}>
-            //             <TextField
-            //                 id="outlined-multiline-static"
-            //                 label="Objective"
-            //                 multiline
-            //                 rows={4}
-            //                 // defaultValue="Default Value"
-            //             />
-            //     </Grid>
-            // </Grid>

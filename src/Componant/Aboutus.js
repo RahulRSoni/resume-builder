@@ -15,9 +15,9 @@ import ul from "../Assets/ul.png";
 const Aboutus = () => {
   return (
     <React.Fragment>
-      <Grid container flexDirection={{ xs: 'column-reverse', md: 'row' }}>
-        <Grid item xs={12} md={6} sm={12} lg={7} color="#403952" >
-          <Box m={2}>
+      <Grid container flexDirection={{ xs: 'column-reverse', md: 'row' }} p={2}>
+        <Grid item xs={12} md={6} sm={12} lg={7} color="#403952" p={1}>
+          <Box >
 
               <Grid item>
                 <Typography
@@ -49,7 +49,7 @@ const Aboutus = () => {
                 </Typography>
               </Grid>
 
-            <Box sx={{ mt: 3 }}>
+            <Box sx={{ mt: 3}}>
 
               <Typography align="left" variant="h4" sx={{ fontWeight: 'medium' }}>
                 Share with your friends
@@ -88,13 +88,13 @@ const Aboutus = () => {
           </Box>
         </Grid>
         <Grid item xs={12} md={6} sm={12} lg={5}>
-          <Box m={2} align="center">
+          <Box p={2} align="center">
             <img
               src={Aboutimg}
               className="App-logo"
               alt="logo"
               height="350"
-              width="550"
+              width="530"
             />
           </Box>
         </Grid>

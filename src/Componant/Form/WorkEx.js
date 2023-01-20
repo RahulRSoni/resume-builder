@@ -53,7 +53,7 @@ const WorkExp = () => {
                     </Grid>
                 </Grid>
 
-                <Grid container display="flex" justifyContent="flex-start" direction="row" spacing={2}>
+                <Grid container display="flex" justifyContent="flex-End" direction="row" spacing={2}>
                     <Grid item>
                         <FormControl variant="standard" size="small" label={'margin="dense"'}>
                             <LocalizationProvider dateAdapter={AdapterDayjs} >
@@ -84,7 +84,7 @@ const WorkExp = () => {
             </Grid>
             <Grid container display="flex" justifyContent="flex-end" mt={4}>
                 <Button variant="text" startIcon={<AddIcon color="primary" />}>
-                    Add one more Employment history
+                    Add more Employment history
                 </Button>
             </Grid>
         </Grid>

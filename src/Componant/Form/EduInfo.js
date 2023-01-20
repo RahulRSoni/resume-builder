@@ -38,7 +38,7 @@ const EduInfo = () => {
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid container display="flex" direction="column" justifyContent="center" alignItems="flex-end" p={2} gap={2}>
+                <Grid container display="flex" direction="Row" justifyContent="flex-end" alignItems="flex-end" p={2} gap={2}>
                     <Grid item >
                         <FormControl variant="standard" sx={{ width: "150px", minWidth: "100%" }} size="small" >
                             <LocalizationProvider dateAdapter={AdapterDayjs} >
@@ -61,10 +61,50 @@ const EduInfo = () => {
             </Grid>
             <Grid container display="flex" justifyContent="flex-end" mt={4}>
                 <Button variant="text" startIcon={<AddIcon color="primary" />}>
-                    Add one more Educational history
+                    Add more Educational history
                 </Button>
             </Grid>
 
+            <Grid container >
+                <Box sx={{ width: "620px", maxWidth: '100%', p: 2 }}>
+                    <Typography variant="h5" component="subtitle2">Education Details</Typography>
+                </Box>
+                <Grid container px={2} gap={2}>
+                    <Grid container item display="flex" direction="row" spacing={2}>
+                        <Grid item sm={6}>
+                            <TextField fullWidth label="Course Name" variant="standard" />
+                        </Grid>
+                        <Grid item sm={6}>
+                            <TextField fullWidth label="University / Institute" variant="standard" />
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid container display="flex" direction="Row" justifyContent="flex-end" alignItems="flex-end" p={2} gap={2}>
+                    <Grid item >
+                        <FormControl variant="standard" sx={{ width: "150px", minWidth: "100%" }} size="small" >
+                            <LocalizationProvider dateAdapter={AdapterDayjs} >
+                                <DatePicker label="Certificate Date" value={startDate}
+                                    views={['month', 'year']}
+                                    minDate={dayjs('2012-03-01')}
+                                    maxDate={dayjs('2023-06-01')}
+                                    onChange={(newValue) => { setStartDate(newValue); }}
+                                    renderInput={(params) => <TextField {...params} variant="standard" />} />
+                            </LocalizationProvider>
+
+                        </FormControl>
+                    </Grid>
+                    <Grid item >
+                        <FormControl variant="standard" sx={{ width: "150px", minWidth: "100%" }} size="small">
+                            <TextField fullWidth label="Grade" variant="standard" />
+                        </FormControl>
+                    </Grid>
+                </Grid>
+            </Grid>
+            <Grid container display="flex" justifyContent="flex-end" mt={4}>
+                <Button variant="text" startIcon={<AddIcon color="primary" />}>
+                    Add more Certificate
+                </Button>
+            </Grid>
         </React.Fragment>
     )
 }

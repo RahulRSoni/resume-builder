@@ -4,6 +4,8 @@ import { useState } from "react"
 import PersonalInfo from "./PersonalInfo"
 import WorkExp from "./WorkEx"
 import EduInfo from "./EduInfo"
+import Skill from "./Skill"
+import OtherInfo from "./OtherInfo"
 
 const FormMain = () => {
 
@@ -33,8 +35,8 @@ const FormMain = () => {
                             <TabPanel value="1"><PersonalInfo /></TabPanel>
                             <TabPanel value="2"><WorkExp/></TabPanel>
                             <TabPanel value="3"><EduInfo/></TabPanel>
-                            <TabPanel value="4">4</TabPanel>
-                            <TabPanel value="5">5</TabPanel>
+                            <TabPanel value="4"><Skill/></TabPanel>
+                            <TabPanel value="5"><OtherInfo/></TabPanel>
                         </Box>
                     </Paper>
                 </Grid>

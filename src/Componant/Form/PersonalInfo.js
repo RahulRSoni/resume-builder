@@ -7,13 +7,16 @@ import TextField from '@mui/material/TextField';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-
+import { useForm } from "react-hook-form";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 const PersonalInfo = () => {
+    const { register, handleSubmit } = useForm();
+    const onSubmit = data => console.log(data);
+
     const [value, setValue] = useState(null);
 
     const [selectedImage, setSelectedImage] = useState(null);
@@ -39,13 +42,15 @@ const PersonalInfo = () => {
     }, [selectedImage]);
 
     return (
+
+        <FormControl onSubmit={handleSubmit(onSubmit)}>
         <Grid container >
             <Box sx={{ width: "620px", maxWidth: '100%', p: 2 }}>
                 <Typography variant="h5">Personal Information</Typography>
             </Box>
             <Grid container display="flex" direction="column" justifyContent="flex-start" alignItems="center" item sm="auto" height="215px">
                 <Grid item>
-                    <Avatar src="/broken-image.jpg" sizes="large" sx={{ width: 150, height: 150, }}>
+                        <Avatar src="/broken-image.jpg" sizes="large" sx={{ width: 150, height: 150, }} inputref={{...register("firstName")}}>
                         {imageUrl && selectedImage && (
                             <Box mt={6} textAlign="center" >
                                 <div>Image Preview:</div>
@@ -162,6 +167,7 @@ const PersonalInfo = () => {
                 </Grid>
             </Grid>
         </Grid >
+        </FormControl>
     )
 }
 

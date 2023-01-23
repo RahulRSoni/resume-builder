@@ -9,15 +9,24 @@ import OtherInfo from "./OtherInfo"
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
+
+
 const FormMain = () => {
 
     const [value, setValue] = useState("1");
 
 
-    const handleChange = (event, newValue) => {
-        setValue(newValue)
 
-        console.log(newValue)
+    const generateNumber = ( newPage) =>{
+        let genPage = Number(newPage);
+         String(genPage += 1)
+        console.log(String(genPage + 1))
+    }
+
+
+    const handleChange = (e, newValue) => {
+            setValue(newValue)
+        // console.log(newValue)
     }
     return (
         <Grid container display="flex" direction="row" justifyContent="center" alignItems="flex-start" sx={{ m: 1, p: 1 }} >
@@ -48,13 +57,22 @@ const FormMain = () => {
                         </Grid>
 
                         <Grid container item direction="row" justifyContent="space-between" alignItems="center" mx={1} p={2}>
-                            <Button variant="text" startIcon={<ArrowBackIosIcon />} disabled={value === 1} onClick={handleChange } >
+                            <Button variant="text" startIcon={<ArrowBackIosIcon />} onClick={() => {
+                                let genValue = Number(value)
+                                let str = String(genValue - 1)
+                                setValue(str)
+                            }}>
                                 Previous
                             </Button>
-                            <Button variant="text" endIcon={<ArrowForwardIosIcon />} disabled={value === 2} onClick={handleChange}>
+                            <Button variant="text" endIcon={<ArrowForwardIosIcon />} onClick={() => {
+                                let genValue = Number(value)
+                                let str = String(genValue + 1)
+                                setValue(str)
+                            }}>
                                 Next
                             </Button>
                         </Grid>
+
                     </Paper>
 
                 </Grid>
@@ -65,3 +83,13 @@ const FormMain = () => {
 }
 
 export default FormMain
+
+
+                        // <Grid container item direction="row" justifyContent="space-between" alignItems="center" mx={1} p={2}>
+                        //     <Button variant="text" startIcon={<ArrowBackIosIcon />} disabled={value === 1} onClick={handleChange } >
+                        //         Previous
+                        //     </Button>
+                        //     <Button variant="text" endIcon={<ArrowForwardIosIcon />} disabled={value === 2} onClick={handleChange}>
+                        //         Next
+                        //     </Button>
+                        // </Grid>

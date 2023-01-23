@@ -5,13 +5,20 @@ import AddIcon from '@mui/icons-material/Add';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
+import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
+import InputAdornment from '@mui/material/InputAdornment';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import YouTubeIcon from '@mui/icons-material/YouTube';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 const OtherInfo = () => {
     return (
         <React.Fragment >
             <Grid container >
                 <Box sx={{ width: "620px", maxWidth: '100%', p: 2 }}>
-                    <Typography variant="h5" component="subtitle2">Knowledge of Languages</Typography>
+                    <Typography variant="h5">Knowledge of Languages</Typography>
                 </Box>
                 <Grid container px={2} gap={2}>
                     <Grid container item display="flex" direction="row" spacing={2}>
@@ -49,12 +56,42 @@ const OtherInfo = () => {
             </Grid>
             <Grid container >
                 <Box sx={{ width: "620px", maxWidth: '100%', p: 2 }}>
-                    <Typography variant="h5" component="subtitle2">Social Media Handle / Websites</Typography>
+                    <Typography variant="h5" >Social Media Handle / Websites</Typography>
                 </Box>
+                <Grid container p={2} gap={2}>
+                    <Grid container item display="flex" direction="row" spacing={2}>
+                        <Grid item sm={6}>
+                            <TextField fullWidth variant="standard" InputProps={{ startAdornment: (<InputAdornment position="start"> <InstagramIcon /> </InputAdornment>), }} />
+                        </Grid>
+                        <Grid item sm={6}>
+                            <TextField fullWidth variant="standard" InputProps={{ startAdornment: (<InputAdornment position="start"> <FacebookOutlinedIcon /> </InputAdornment>), }} />
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid container p={2} gap={2}>
+                    <Grid container item display="flex" direction="row" spacing={2}>
+                        <Grid item sm={6}>
+                            <TextField fullWidth variant="standard" InputProps={{ startAdornment: (<InputAdornment position="start"> <TwitterIcon /> </InputAdornment>), }} />
+                        </Grid>
+                        <Grid item sm={6}>
+                            <TextField fullWidth variant="standard" InputProps={{ startAdornment: (<InputAdornment position="start"> <LinkedInIcon /> </InputAdornment>), }} />
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid container p={2} gap={2}>
+                    <Grid container item display="flex" direction="row" spacing={2}>
+                        <Grid item sm={6}>
+                            <TextField fullWidth variant="standard" InputProps={{ startAdornment: (<InputAdornment position="start"> <YouTubeIcon /> </InputAdornment>), }} />
+                        </Grid>
+                        <Grid item sm={6}>
+                            <TextField fullWidth variant="standard" InputProps={{ startAdornment: (<InputAdornment position="start"> <GitHubIcon /> </InputAdornment>), }} />
+                        </Grid>
+                    </Grid>
+                </Grid>
                 <Grid container px={2} gap={2}>
                     <Grid container item display="flex" direction="row" spacing={2}>
                         <Grid item sm={6}>
-                            <TextField fullWidth label="Platform" variant="standard" />
+                            <TextField fullWidth label="Other Platform Name" variant="standard" />
                         </Grid>
                         <Grid item sm={6}>
                             <TextField fullWidth label="Paste Your Handle Link or url" variant="standard" />
@@ -70,7 +107,7 @@ const OtherInfo = () => {
 
             <Grid container >
                 <Box sx={{ width: "620px", maxWidth: '100%', p: 2 }}>
-                    <Typography variant="h5" component="subtitle2">Interest / Hobbies</Typography>
+                    <Typography variant="h5" >Interest / Hobbies</Typography>
                 </Box>
                 <Grid container px={2} gap={2}>
                     <Grid container item display="flex" direction="row">
@@ -89,7 +126,7 @@ const OtherInfo = () => {
 
             <Grid container >
                 <Box sx={{ width: "620px", maxWidth: '100%', p: 2 }}>
-                    <Typography variant="h5" component="subtitle2">References</Typography>
+                    <Typography variant="h5" >References</Typography>
                 </Box>
                 <Grid container px={2} gap={2}>
 
@@ -101,17 +138,17 @@ const OtherInfo = () => {
                             <TextField fullWidth label="Organization Name (Job Profile)" variant="standard" />
                         </Grid>
                     </Grid>
-                    <Grid container display="flex" direction="Column" justifyContent="center" alignItems="flex-end" spacing={2}>
-                            <Grid item sm={6}>
-                                <Box sx={{ width: "280px", maxWidth: '100%'}}>
-                                    <TextField fullWidth label="Email" variant="standard" />
-                                </Box >
-                            </Grid>
+                    <Grid container display="flex" direction="column" justifyContent="center" alignItems="flex-end" spacing={2}>
                         <Grid item sm={6}>
-                            <Box sx={{ width: "280px", maxWidth: '100%'}}>
+                            <Box sx={{ width: "280px", maxWidth: '100%' }}>
+                                <TextField fullWidth label="Email" variant="standard" />
+                            </Box >
+                        </Grid>
+                        <Grid item sm={6}>
+                            <Box sx={{ width: "280px", maxWidth: '100%' }}>
                                 <TextField fullWidth label="Mobile or Phone" variant="standard" />
                             </Box >
-                            </Grid>
+                        </Grid>
                     </Grid>
                 </Grid>
             </Grid>

@@ -16,7 +16,7 @@ const WorkExp = () => {
     return (
         <Grid container >
             <Box sx={{ width: "620px", maxWidth: '100%', p: 2 }}>
-                <Typography variant="h5" component="subtitle2">Professional Summary</Typography>
+                <Typography variant="h5" >Professional Summary</Typography>
             </Box>
             <Grid container px={2} gap={2}>
                 <Box sx={{ width: "620px", maxWidth: '100%', }} >
@@ -24,7 +24,7 @@ const WorkExp = () => {
                 </Box>
             </Grid>
             <Box sx={{ width: "620px", maxWidth: '100%', p: 2 }}>
-                <Typography variant="h5" component="subtitle2">Work Experience</Typography>
+                <Typography variant="h5">Work Experience</Typography>
             </Box>
             <Grid container px={2} gap={2}>
                 <Grid container item display="flex" direction="row" spacing={2}>

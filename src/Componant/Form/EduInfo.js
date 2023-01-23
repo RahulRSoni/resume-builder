@@ -17,7 +17,7 @@ const EduInfo = () => {
         <React.Fragment>
             <Grid container >
                 <Box sx={{ width: "620px", maxWidth: '100%', p: 2 }}>
-                    <Typography variant="h5" component="subtitle2">Education Details</Typography>
+                    <Typography variant="h5" >Education Details</Typography>
                 </Box>
                 <Grid container px={2} gap={2}>
                     <Grid container item display="flex" direction="row" spacing={2}>
@@ -38,7 +38,7 @@ const EduInfo = () => {
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid container display="flex" direction="Row" justifyContent="flex-end" alignItems="flex-end" p={2} gap={2}>
+                <Grid container display="flex" direction="row" justifyContent="flex-end" alignItems="flex-end" p={2} gap={2}>
                     <Grid item >
                         <FormControl variant="standard" sx={{ width: "150px", minWidth: "100%" }} size="small" >
                             <LocalizationProvider dateAdapter={AdapterDayjs} >
@@ -67,7 +67,7 @@ const EduInfo = () => {
 
             <Grid container >
                 <Box sx={{ width: "620px", maxWidth: '100%', p: 2 }}>
-                    <Typography variant="h5" component="subtitle2">Education Details</Typography>
+                    <Typography variant="h5" >Education Details</Typography>
                 </Box>
                 <Grid container px={2} gap={2}>
                     <Grid container item display="flex" direction="row" spacing={2}>
@@ -79,7 +79,7 @@ const EduInfo = () => {
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid container display="flex" direction="Row" justifyContent="flex-end" alignItems="flex-end" p={2} gap={2}>
+                <Grid container display="flex" direction="row" justifyContent="flex-end" alignItems="flex-end" p={2} gap={2}>
                     <Grid item >
                         <FormControl variant="standard" sx={{ width: "150px", minWidth: "100%" }} size="small" >
                             <LocalizationProvider dateAdapter={AdapterDayjs} >

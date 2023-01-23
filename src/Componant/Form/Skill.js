@@ -20,7 +20,7 @@ const Skill = () => {
         <React.Fragment>
             <Grid container >
                 <Box sx={{ width: "620px", maxWidth: '100%', p: 2 }}>
-                    <Typography variant="h5" component="subtitle2">Key Skill</Typography>
+                    <Typography variant="h5">Key Skill</Typography>
                 </Box>
                 <Grid container px={2} gap={2}>
                     <Grid container item display="flex" direction="row" spacing={2}>
@@ -55,7 +55,7 @@ const Skill = () => {
 
             <Grid container >
                 <Box sx={{ width: "620px", maxWidth: '100%', p: 2 }}>
-                    <Typography variant="h5" component="subtitle2">Other Skills</Typography>
+                    <Typography variant="h5">Other Skills</Typography>
                 </Box>
                 <Grid container px={2} gap={2}>
                     <Grid container item display="flex" direction="row">

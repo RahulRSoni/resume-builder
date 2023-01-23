@@ -121,6 +121,7 @@ const PersonalInfo = () => {
                     <FormControl variant="standard" sx={{width:"25px", minWidth: "25%" }} size="small" label={'margin="dense"'}>
                         <LocalizationProvider dateAdapter={AdapterDayjs} >
                             <DatePicker label="DOB" value={value}
+                                inputFormat="DD-MM-YYYY"
                                 onChange={(newValue) => { setValue(newValue); }}
                                 renderInput={(params) => <TextField {...params} variant="standard" fullWidth />} />
                         </LocalizationProvider>

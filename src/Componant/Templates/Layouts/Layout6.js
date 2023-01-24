@@ -1,43 +1,52 @@
 import React from 'react'
 
-const Layout1 = () => {
+const Layout6 = () => {
   return (
-    
     <React.Fragment>
-   <Grid container flexDirection={{ xs: 'column-reverse', md: 'row' }}>
-      <Grid item  md={3} color="#403952" bgcolor="primary" >
+    <Grid container flexDirection={{ xs: 'column-reverse', md: 'row' }}>
+      <Grid item  md={9} color="" bgcolor="primary" >
         <Box m={2} align="center" sx={{
-          backgroundColor: "#d9c3a7",
-          color:"#000000",
+          backgroundColor: "#222e46",
+          color:"#bea631",
+          
 
         }}>
-            {/* <img
-              src={Profile}
-              className="App-logo"
-              alt="logo"
-              height="200"
-              width="200"
-              sx={{cardMedia:{paddingTop:"81.25%",borderRadius:"50%",margin:"28px"}}}
-             /> */}
-             <br></br>
-<Avatar
-
-  alt=""
-  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6GfaS_99vn2iGc4BtGtoOw9SkVYoenwFcgg&usqp=CAU"
-  sx={{ width: 200, height: 200 }}
-/>
 <br></br>
-  
-                  <Box m={2} align="center" sx={{
-          backgroundColor: "#000000",
-          color:"white",
+
+
+    <Typography align="center" variant="h2" sx={{ wordSpacing:"2"}} >
+                                E M M A  W A T S O N
+                            </Typography>
+                            <br></br>
+                            <Typography align="center" variant="body1" sx={{ coloumSpacing:"2"}} >
+                                YOUR PROFRSSIONAL TITTLE
+                            </Typography>
+                            <br></br>
+                            <br></br>
+                            </Box>
+                            </Grid>
+                            </Grid>
+
+
+
+
+   <Grid container flexDirection={{ xs: 'column-reverse', md: 'row' }}>
+      <Grid item  md={3} color="" bgcolor="primary" >
+        <Box m={2} align="center" sx={{
+          backgroundColor: "#d0d2d6",
+          
+          color:"#222e46",
 
         }}>
-           <Typography align="center" variant="h6" >
+            <br></br>
+            <br></br>
+             
+
+
+
+           <Typography align="center" variant="h6" sx={{textDecoration: 'underline'}} >
                                 CONTACT
                             </Typography>
-                            </Box>
-                          
                             <br></br>
                             <Typography align='center' variant='body1'>
                                phone no : 91-987654321
@@ -53,17 +62,9 @@ const Layout1 = () => {
                             <br></br>
                             <br></br>
                             <br></br>
-                            
-                  <Box m={2} align="center" sx={{
-          backgroundColor: "#000000",
-          color:"white",
-
-        }}>
-
-                             <Typography align="center" variant="h6" >
+                             <Typography align="center" variant="h6" sx={{textDecoration: 'underline'}}>
                                 EDUCATION
                             </Typography>
-                            </Box>
                             <br></br>
                             <Typography align='center' variant='body1'>
                                master in MBA
@@ -85,18 +86,30 @@ const Layout1 = () => {
                                 <br></br>
                             <br></br>
                             <br></br>
-                            <Box m={2} align="center" sx={{
-          backgroundColor: "#000000",
-          color:"white",
 
-        }}>
+                               <Typography align="center" variant="h6" sx={{textDecoration: 'underline'}}>
+                                REFERENCE
+                            </Typography>
+                            <br></br>
+                            <br></br>
+                            <Typography align='center' variant='body1'>
+                               MR JOHN WALKER-CHEIF ASSOCIATE
+                               </Typography>
+                               <br></br>
+                               <Typography align='center' variant='body1'>
+                               Email : YourEmail@gmail.com
+                               </Typography>
+                                <Typography align='center' variant='body1'>
+                             phone no : 91-987654321
+                               </Typography>
 
-                            <Typography align="center" variant="h6" >
+                               <br></br>
+                               <br></br>
+                               <Typography align="center" variant="h6" >
                                 SKILLS
                             </Typography>
-                            </Box>
                             <br></br>
-                            
+                          
                             <Typography align="center" variant="body1" >
                             Strategic Fomentation	                             
                             </Typography>
@@ -109,13 +122,9 @@ const Layout1 = () => {
                             <Typography align="center" variant="body1" >
                             Attention to Detail                             
                             </Typography>
-                            
-                            <Box/>
 
 
-                              
-                               <br></br>
-                               <br></br>
+
                                <br></br>
                                <br></br>
                                <br></br>
@@ -138,21 +147,6 @@ const Layout1 = () => {
 
       <Grid items md={6} bgcolor="secondary">
        
-<Box m={2} align="center" sx={{
-          backgroundColor: "#000000",
-         }}>
-          <br></br>
-        <Typography align="center" variant="h3" sx={{ color:"White",}}>
-                                M O U N I C A 
-                            </Typography>
-                            <br></br>
-                            <Typography align="center" variant="body1" sx={{ color:"White",}}>
-                                PRODUCT MANAGER
-                            </Typography>
-                            <br></br>
-                            <br></br>
-                           
-       </Box>
        <br></br>
                             <br></br>
        <Typography align="left" variant="h6" >
@@ -166,7 +160,7 @@ const Layout1 = () => {
                             <br></br>
                             <br></br>
                             <Typography align="left" variant="h6" >
-                                WORK EXPERIENCE
+                                PROFESSIONAL WORK EXPERIENCE
                             </Typography>
                             <br></br>
                             <hr></hr>
@@ -175,7 +169,7 @@ const Layout1 = () => {
                             SENIOR MANAGER
                             </Typography>
                             <br></br>
-                            <Typography align="left" variant="subtitle1" sx={{fontWeight:"medium" ,color:"#9e9e9e"}} >
+                            <Typography align="left" variant="subtitle1" sx={{fontWeight:"medium" ,color:"#bea631"}} >
                             LEO Compony, Paris - France
                             </Typography>
                             <Typography align="left" variant="subtitle1" sx={{fontWeight:"medium" }} >
@@ -186,7 +180,7 @@ const Layout1 = () => {
                             SENIOR MANAGER
                             </Typography>
                             <br></br>
-                            <Typography align="left" variant="subtitle1" sx={{fontWeight:"medium" ,color:"#9e9e9e"}} >
+                            <Typography align="left" variant="subtitle1" sx={{fontWeight:"medium" ,color:"#bea631"}} >
                             LEO Compony, Paris - France
                             </Typography>
                             <Typography align="left" variant="subtitle1" sx={{fontWeight:"medium" }} >
@@ -197,7 +191,7 @@ const Layout1 = () => {
                             SENIOR MANAGER
                             </Typography>
                             <br></br>
-                            <Typography align="left" variant="subtitle1" sx={{fontWeight:"medium" ,color:"#9e9e9e"}} >
+                            <Typography align="left" variant="subtitle1" sx={{fontWeight:"medium" ,color:"#bea631"}} >
                             LEO Compony, Paris - France
                             </Typography>
                             <Typography align="left" variant="subtitle1" sx={{fontWeight:"medium" }} >
@@ -206,18 +200,16 @@ const Layout1 = () => {
                             <br></br>
                             <br></br>
 
-                           
-
-
+                          
                             
 
       </Grid>
 
        
     </Grid>
-      
+
     </React.Fragment>
   )
 }
 
-export default Layout1
+export default Layout6

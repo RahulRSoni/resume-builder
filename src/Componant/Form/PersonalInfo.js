@@ -7,15 +7,17 @@ import TextField from '@mui/material/TextField';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { useForm } from "react-hook-form";
+// import FormInputText from './form-component/FormInputText'
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 const PersonalInfo = () => {
-    const { register, handleSubmit } = useForm();
-    const onSubmit = data => console.log(data);
+
+
+
+
 
     const [value, setValue] = useState(null);
 
@@ -43,14 +45,14 @@ const PersonalInfo = () => {
 
     return (
 
-        <FormControl onSubmit={handleSubmit(onSubmit)}>
+        <FormControl>
         <Grid container >
             <Box sx={{ width: "620px", maxWidth: '100%', p: 2 }}>
                 <Typography variant="h5">Personal Information</Typography>
             </Box>
             <Grid container display="flex" direction="column" justifyContent="flex-start" alignItems="center" item sm="auto" height="215px">
                 <Grid item>
-                        <Avatar src="/broken-image.jpg" sizes="large" sx={{ width: 150, height: 150, }} inputref={{...register("firstName")}}>
+                        <Avatar src="/broken-image.jpg" sizes="large" sx={{ width: 150, height: 150, }}>
                         {imageUrl && selectedImage && (
                             <Box mt={6} textAlign="center" >
                                 <div>Image Preview:</div>
@@ -74,7 +76,7 @@ const PersonalInfo = () => {
                 </Grid>
                 <Grid container justifyContent="flex-start" alignItems="center" item sm={6}>
                     <Box sx={{ width: 400, maxWidth: '100%', }} >
-                        <TextField fullWidth label="Wanted Job Title" variant="standard"  />
+                            <TextField fullWidth label="Wanted Job Title" variant="standard"  />
                     </Box>
                 </Grid>
             </Grid>
@@ -82,7 +84,7 @@ const PersonalInfo = () => {
             <Grid container px={2} gap={2}>
                 <Grid container item display="flex" direction="row" spacing={2}>
                     <Grid item sm={6}>
-                        <TextField fullWidth label="First Name" variant="standard"  />
+                            <TextField fullWidth label="First Name" variant="standard"  />
                     </Grid>
                     <Grid item sm={6}>
                         <TextField fullWidth label="Last Name" variant="standard"  />

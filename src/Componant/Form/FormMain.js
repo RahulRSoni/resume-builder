@@ -10,13 +10,19 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 // import { Link } from "react-router-dom"
 
-// import {FormProvider, useForm} from 'react-hook-form'
+import {FormProvider, useForm} from 'react-hook-form'
 
 
 const FormMain = () => {
 
-    // const formMethod = useForm();
-    // const { handleSubmit, reset, control, watch } = formMethod;
+    const formMethod = useForm({
+        defaultValues: {
+            jobTitle: "",
+            lastName: ""
+        }
+    });
+
+    // const onSubmit = data => console.log(data);
    
     const [value, setValue] = useState("1");
     const [buttonText, setButtonText] = useState("Next")
@@ -29,12 +35,13 @@ const FormMain = () => {
         }
     }
 
-    const handleNext = () => {
+    const handleNext = (data) => {
         let genValue = Number(value)
         if (genValue <= 4 && genValue >= 1) {
             let str = String(genValue + 1)
             setValue(str)
             changeButtonText(value)
+            console.log(data)
         }
     }
 
@@ -43,7 +50,7 @@ const FormMain = () => {
         let str = String(genValue - 1)
         setValue(str)
         changeButtonText(value)
-            
+
     }
 
     const handleChange = (e, newValue) => {
@@ -69,13 +76,13 @@ const FormMain = () => {
                     <Paper elevation={10} >
                         <Grid item>
                             <Box sx={{ width: 700, maxHeight: "100%", maxWidth: "100%", }}>
-
+                                <FormProvider {...formMethod}><form id="nextButton" onSubmit={formMethod.handleSubmit(handleNext)}>
                                 <TabPanel value="1"><PersonalInfo /></TabPanel>
                                 <TabPanel value="2"><WorkExp /></TabPanel>
                                 <TabPanel value="3"><EduInfo /></TabPanel>
                                 <TabPanel value="4"><Skill /></TabPanel>
                                 <TabPanel value="5"><OtherInfo /></TabPanel>
-
+                                </form></FormProvider>
                             </Box>
                         </Grid>
 
@@ -83,7 +90,7 @@ const FormMain = () => {
                             <Button variant="text" startIcon={<ArrowBackIosIcon />} disabled={value <= 1 ? true : false} onClick={() => handleBack()}>
                                 Back
                             </Button>
-                            <Button variant="text" endIcon={<ArrowForwardIosIcon />} disabled={value > 5 ? true : false} onClick={() => handleNext()}>
+                            <Button variant="text" type="submit" form="nextButton" endIcon={<ArrowForwardIosIcon />} disabled={value > 5 ? true : false} >
                                 {buttonText}
                             </Button>
                         </Grid>

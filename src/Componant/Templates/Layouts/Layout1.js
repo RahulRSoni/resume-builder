@@ -1,4 +1,5 @@
 import React from 'react'
+import { Grid,Box,Avatar,Typography } from '@mui/material'
 
 const Layout1 = () => {
   return (
@@ -44,7 +45,7 @@ const Layout1 = () => {
                             </Typography>
                             <Typography align='center' variant='body1'>
                              
-                               Adress : Hno 1-1-123 street 
+                               Address : Hno 1-1-123 street 
                                
                             </Typography>
                             <Typography align='center' variant='body1'>
@@ -72,7 +73,7 @@ const Layout1 = () => {
                                jan 23-2018
                                </Typography>
                                <Typography align='center' variant='body1'>
-                               university of newyork 
+                               university of New york 
                                </Typography>
                                     <br></br>
                                          <br></br>

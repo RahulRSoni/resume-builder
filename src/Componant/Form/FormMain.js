@@ -9,27 +9,47 @@ import OtherInfo from "./OtherInfo"
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-import {FormProvider, useForm} from 'react-hook-form'
+import { FormProvider, useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from "yup";
+import * as Yup from "yup";
 
-const schema = yup.object({
-    jobTitle: yup.string().required(),
-    // age: yup.number().positive().integer().required(),
-}).required();
 
+const validationSchema = Yup.object().shape({
+    jobTitle: Yup.string().required('Please fill the Job Title'),
+    firstName: Yup.string()
+        .required('Please fill the First Name'),
+    lastName: Yup.string()
+        .required('Please fill the Last Name'),
+    email: Yup.string()
+        .required('Email ID is required')
+        .email('Please fill valid Email ID'),
+    mobile: Yup.string().required('Please fill valid Mobile Number'),
+    pinCode: Yup.string(),
+    address: Yup.string(),
+    city: Yup.string().required('Please enter your City Name'),
+    state: Yup.string().required('Please enter your State Name'),
+    country: Yup.string().required('Please enter your country Name'),
+})
 
 const FormMain = () => {
 
     const formMethod = useForm({
-        resolver: yupResolver(schema),
+        resolver: yupResolver(validationSchema),
         defaultValues: {
             jobTitle: "",
-            lastName: ""
+            firstName: "",
+            lastName: "",
+            email:"",
+            mobile:"",
+            pinCode:"",
+            address:"",
+            city:"",
+            state:"",
+            country:""
         }
     });
 
-   
+
     const [value, setValue] = useState("1");
     const [buttonText, setButtonText] = useState("Next")
 
@@ -83,11 +103,11 @@ const FormMain = () => {
                         <Grid item>
                             <Box sx={{ width: 700, maxHeight: "100%", maxWidth: "100%", }}>
                                 <FormProvider {...formMethod}><form id="nextButton" onSubmit={formMethod.handleSubmit(handleNext)}>
-                                <TabPanel value="1"><PersonalInfo /></TabPanel>
-                                <TabPanel value="2"><WorkExp /></TabPanel>
-                                <TabPanel value="3"><EduInfo /></TabPanel>
-                                <TabPanel value="4"><Skill /></TabPanel>
-                                <TabPanel value="5"><OtherInfo /></TabPanel>
+                                    <TabPanel value="1"><PersonalInfo /></TabPanel>
+                                    <TabPanel value="2"><WorkExp /></TabPanel>
+                                    <TabPanel value="3"><EduInfo /></TabPanel>
+                                    <TabPanel value="4"><Skill /></TabPanel>
+                                    <TabPanel value="5"><OtherInfo /></TabPanel>
                                 </form></FormProvider>
                             </Box>
                         </Grid>

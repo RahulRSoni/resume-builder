@@ -11,14 +11,16 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import {  Controller, useFormContext } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 // import { yupResolver } from '@hookform/resolvers/yup';
 // import * as yup from "yup";
+
+
 
 const PersonalInfo = () => {
 
 
-    const { control } = useFormContext();
+    const { control, register } = useFormContext();
 
 
     const [value, setValue] = useState(null);
@@ -78,20 +80,23 @@ const PersonalInfo = () => {
                     </Grid>
                     <Grid container justifyContent="flex-start" alignItems="center" item sm={6}>
                         <Box sx={{ width: 400, maxWidth: '100%', }} >
-                        <Controller
+                            <Controller
                                 control={control}
                                 name="jobTitle"
-                                render={({field}) => (
+                                render={({ field, formState: { errors } }) => (
                                     <TextField
-                                    fullWidth
-                                    id = "job-title"
-                                    label="Wanted Job Title"
-                                    variant="standard"
-                                    {...field}
-                                />)}
-                                             
-                        />
-                            
+                                        fullWidth
+                                        id="job-title"
+                                        label="Wanted Job Title"
+                                        variant="standard"
+                                        {...field}
+                                        inputRef={register("jobTitle")}
+                                        error={Boolean(errors.jobTitle?.message)}
+                                        helperText={errors.jobTitle?"Please fill the job Title":""}
+                                    />)}
+
+                            />
+
                         </Box>
                     </Grid>
                 </Grid>

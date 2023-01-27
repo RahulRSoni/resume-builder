@@ -8,21 +8,27 @@ import Skill from "./Skill"
 import OtherInfo from "./OtherInfo"
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-// import { Link } from "react-router-dom"
 
 import {FormProvider, useForm} from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from "yup";
+
+const schema = yup.object({
+    jobTitle: yup.string().required(),
+    // age: yup.number().positive().integer().required(),
+}).required();
 
 
 const FormMain = () => {
 
     const formMethod = useForm({
+        resolver: yupResolver(schema),
         defaultValues: {
             jobTitle: "",
             lastName: ""
         }
     });
 
-    // const onSubmit = data => console.log(data);
    
     const [value, setValue] = useState("1");
     const [buttonText, setButtonText] = useState("Next")

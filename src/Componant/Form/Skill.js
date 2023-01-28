@@ -3,9 +3,12 @@ import { Box, Grid, Typography, Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import AddIcon from '@mui/icons-material/Add';
 import Slider from '@mui/material/Slider';
+import { Controller, useFormContext } from "react-hook-form";
 
 const Skill = () => {
     const [value, setValue] = React.useState(3);
+
+    const { control, register } = useFormContext();
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
@@ -25,7 +28,23 @@ const Skill = () => {
                 <Grid container px={2} gap={2}>
                     <Grid container item display="flex" direction="row" spacing={2}>
                         <Grid item sm={6}>
-                            <TextField fullWidth label="Skill" variant="standard" />
+
+                            <Controller
+                                control={control}
+                                name="keySkill"
+                                render={({ field, formState: { errors } }) => (
+                                    <TextField
+                                        fullWidth
+                                        id="keySkill"
+                                        label="Skill"
+                                        variant="standard"
+                                        {...field}
+                                        inputRef={register('keySkill')}
+                                        error={Boolean(errors.keySkill)}
+                                        helperText={errors.keySkill ? errors.keySkill.message : " "}
+                                    />)}
+                            />
+
                         </Grid>
                         <Grid item sm={6}>
                             <Box sx={{ width: "100%" }}>
@@ -60,7 +79,23 @@ const Skill = () => {
                 <Grid container px={2} gap={2}>
                     <Grid container item display="flex" direction="row">
                         <Box sx={{ width: "620px", maxWidth: '100%', }} >
-                            <TextField fullWidth label="Mention hare your other key skill." variant="standard" />
+
+                            <Controller
+                                control={control}
+                                name="otherSkill"
+                                render={({ field, formState: { errors } }) => (
+                                    <TextField
+                                        fullWidth
+                                        id="otherSkill"
+                                        label="Mention hare your other key skill."
+                                        variant="standard"
+                                        {...field}
+                                        inputRef={register('otherSkill')}
+                                        error={Boolean(errors.otherSkill)}
+                                        helperText={errors.otherSkill ? errors.otherSkill.message : " "}
+                                    />)}
+                            />
+
                         </Box>
                     </Grid>
                 </Grid>

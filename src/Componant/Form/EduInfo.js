@@ -8,10 +8,12 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import FormControl from '@mui/material/FormControl';
 import AddIcon from '@mui/icons-material/Add';
 import dayjs from 'dayjs';
+import { Controller, useFormContext } from "react-hook-form";
 
 const EduInfo = () => {
     const [startDate, setStartDate] = useState(null);
 
+    const { control, register } = useFormContext();
 
     return (
         <React.Fragment>
@@ -22,19 +24,82 @@ const EduInfo = () => {
                 <Grid container px={2} gap={2}>
                     <Grid container item display="flex" direction="row" spacing={2}>
                         <Grid item sm={6}>
-                            <TextField fullWidth label="Qualification" variant="standard" />
+
+                            <Controller
+                                control={control}
+                                name="qualification"
+                                render={({ field, formState: { errors } }) => (
+                                    <TextField
+                                        fullWidth
+                                        id="qualification"
+                                        label="Qualification"
+                                        variant="standard"
+                                        {...field}
+                                        inputRef={register('qualification')}
+                                        error={Boolean(errors.qualification)}
+                                        helperText={errors.qualification ? errors.qualification.message : " "}
+                                    />)}
+                            />
                         </Grid>
                         <Grid item sm={6}>
-                            <TextField fullWidth label="University / School" variant="standard" />
+
+                            <Controller
+                                control={control}
+                                name="university"
+                                render={({ field, formState: { errors } }) => (
+                                    <TextField
+                                        fullWidth
+                                        id="university"
+                                        label="University / School"
+                                        variant="standard"
+                                        {...field}
+                                        inputRef={register('university')}
+                                        error={Boolean(errors.university)}
+                                        helperText={errors.university ? errors.university.message : " "}
+                                    />)}
+                            />
                         </Grid>
                     </Grid>
 
                     <Grid container item display="flex" direction="row" spacing={2} >
                         <Grid item sm={6}>
-                            <TextField fullWidth label="City" variant="standard" />
+
+                            <Controller
+                                control={control}
+                                name="universityCity"
+                                render={({ field, formState: { errors } }) => (
+                                    <TextField
+                                        fullWidth
+                                        id="universityCity"
+                                        label="City"
+                                        variant="standard"
+                                        {...field}
+                                        inputRef={register('universityCity')}
+                                        error={Boolean(errors.universityCity)}
+                                        helperText={errors.universityCity ? errors.universityCity.message : " "}
+                                    />)}
+                            />
+
                         </Grid>
                         <Grid item sm={6}>
-                            <TextField fullWidth label="State" variant="standard" />
+
+                            <Controller
+                                control={control}
+                                name="universityState"
+                                render={({ field, formState: { errors } }) => (
+                                    <TextField
+                                        fullWidth
+                                        id="universityState"
+                                        label="State"
+                                        variant="standard"
+                                        {...field}
+                                        inputRef={register('universityState')}
+                                        error={Boolean(errors.universityState)}
+                                        helperText={errors.universityState ? errors.universityState.message : " "}
+                                    />)}
+                            />
+
+
                         </Grid>
                     </Grid>
                 </Grid>
@@ -72,10 +137,41 @@ const EduInfo = () => {
                 <Grid container px={2} gap={2}>
                     <Grid container item display="flex" direction="row" spacing={2}>
                         <Grid item sm={6}>
-                            <TextField fullWidth label="Course Name" variant="standard" />
+
+                            <Controller
+                                control={control}
+                                name="courseName"
+                                render={({ field, formState: { errors } }) => (
+                                    <TextField
+                                        fullWidth
+                                        id="courseName"
+                                        label="Course Name"
+                                        variant="standard"
+                                        {...field}
+                                        inputRef={register('courseName')}
+                                        error={Boolean(errors.courseName)}
+                                        helperText={errors.courseName ? errors.courseName.message : " "}
+                                    />)}
+                            />
                         </Grid>
                         <Grid item sm={6}>
-                            <TextField fullWidth label="University / Institute" variant="standard" />
+
+                            <Controller
+                                control={control}
+                                name="courseBy"
+                                render={({ field, formState: { errors } }) => (
+                                    <TextField
+                                        fullWidth
+                                        id="courseBy"
+                                        label="University / Institute"
+                                        variant="standard"
+                                        {...field}
+                                        inputRef={register('courseBy')}
+                                        error={Boolean(errors.courseBy)}
+                                        helperText={errors.courseBy ? errors.courseBy.message : " "}
+                                    />)}
+                            />
+
                         </Grid>
                     </Grid>
                 </Grid>

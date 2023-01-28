@@ -16,7 +16,6 @@ import { Controller, useFormContext } from "react-hook-form";
 
 const PersonalInfo = () => {
 
-
     const { control, register } = useFormContext();
 
     const [value, setValue] = useState(null);
@@ -75,7 +74,7 @@ const PersonalInfo = () => {
                         </Button>
                     </Grid>
                     <Grid container justifyContent="flex-start" alignItems="center" item sm={6}>
-                        <Box  sx={{ width: 400, maxWidth: '100%', }} >
+                        <Box sx={{ width: 400, maxWidth: '100%', }} >
                             <Controller
                                 control={control}
                                 name="jobTitle"
@@ -182,8 +181,6 @@ const PersonalInfo = () => {
                                         variant="standard"
                                         {...field}
                                         {...register('address')}
-                                        error={Boolean(errors.address)}
-                                        helperText={errors.address ? errors.address.message : " "}
                                     />)}
                             />
                         </Box>
@@ -214,6 +211,7 @@ const PersonalInfo = () => {
                                 render={({ field, formState: { errors } }) => (
                                     <TextField
                                         fullWidth
+
                                         label="State"
                                         id='state'
                                         variant="standard"

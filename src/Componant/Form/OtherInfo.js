@@ -12,8 +12,12 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import { Controller, useFormContext } from "react-hook-form";
 
 const OtherInfo = () => {
+
+    const { control, register } = useFormContext();
+
     return (
         <React.Fragment >
             <Grid container >
@@ -23,7 +27,22 @@ const OtherInfo = () => {
                 <Grid container px={2} gap={2}>
                     <Grid container item display="flex" direction="row" spacing={2}>
                         <Grid item sm={6}>
-                            <TextField fullWidth label="Language" variant="standard" />
+                            <Controller
+                                control={control}
+                                name="language"
+                                render={({ field, formState: { errors } }) => (
+                                    <TextField
+                                        fullWidth
+                                        id="language"
+                                        label="Language"
+                                        variant="standard"
+                                        {...field}
+                                        inputRef={register('language')}
+                                        error={Boolean(errors.language)}
+                                        helperText={errors.language ? errors.language.message : " "}
+                                    />)}
+                            />
+
                         </Grid>
                         <Grid item sm={6}>
                             <Box sx={{ minWidth: 120 }}>
@@ -61,40 +80,157 @@ const OtherInfo = () => {
                 <Grid container p={2} gap={2}>
                     <Grid container item display="flex" direction="row" spacing={2}>
                         <Grid item sm={6}>
-                            <TextField fullWidth variant="standard" InputProps={{ startAdornment: (<InputAdornment position="start"> <InstagramIcon /> </InputAdornment>), }} />
+
+                            <Controller
+                                control={control}
+                                name="link1"
+                                render={({ field, formState: { errors } }) => (
+                                    <TextField
+                                        fullWidth
+                                        id="link1"
+                                        label=""
+                                        variant="standard"
+                                        InputProps={{ startAdornment: (<InputAdornment position="start"> <InstagramIcon /> </InputAdornment>), }}
+                                        {...field}
+                                        inputRef={register('link1')}
+                                    />)}
+                            />
+
                         </Grid>
                         <Grid item sm={6}>
-                            <TextField fullWidth variant="standard" InputProps={{ startAdornment: (<InputAdornment position="start"> <FacebookOutlinedIcon /> </InputAdornment>), }} />
+
+                            <Controller
+                                control={control}
+                                name="link2"
+                                render={({ field, formState: { errors } }) => (
+                                    <TextField
+                                        fullWidth
+                                        id="link2"
+                                        label=""
+                                        variant="standard"
+                                        InputProps={{ startAdornment: (<InputAdornment position="start"> <FacebookOutlinedIcon /> </InputAdornment>), }}
+                                        {...field}
+                                        inputRef={register('link2')}
+                                    />)}
+                            />
                         </Grid>
                     </Grid>
                 </Grid>
                 <Grid container p={2} gap={2}>
                     <Grid container item display="flex" direction="row" spacing={2}>
                         <Grid item sm={6}>
-                            <TextField fullWidth variant="standard" InputProps={{ startAdornment: (<InputAdornment position="start"> <TwitterIcon /> </InputAdornment>), }} />
+
+                            <Controller
+                                control={control}
+                                name="link3"
+                                render={({ field, formState: { errors } }) => (
+                                    <TextField
+                                        fullWidth
+                                        id="link3"
+                                        label=""
+                                        variant="standard"
+                                        InputProps={{ startAdornment: (<InputAdornment position="start"> <TwitterIcon /> </InputAdornment>), }}
+                                        {...field}
+                                        inputRef={register('link3')}
+                                    />)}
+                            />
+
                         </Grid>
                         <Grid item sm={6}>
-                            <TextField fullWidth variant="standard" InputProps={{ startAdornment: (<InputAdornment position="start"> <LinkedInIcon /> </InputAdornment>), }} />
+
+                            <Controller
+                                control={control}
+                                name="link4"
+                                render={({ field, formState: { errors } }) => (
+                                    <TextField
+                                        fullWidth
+                                        id="link4"
+                                        label=""
+                                        variant="standard"
+                                        InputProps={{ startAdornment: (<InputAdornment position="start"> <LinkedInIcon /> </InputAdornment>), }}
+                                        {...field}
+                                        inputRef={register('link4')}
+                                    />)}
+                            />
                         </Grid>
                     </Grid>
                 </Grid>
                 <Grid container p={2} gap={2}>
                     <Grid container item display="flex" direction="row" spacing={2}>
                         <Grid item sm={6}>
-                            <TextField fullWidth variant="standard" InputProps={{ startAdornment: (<InputAdornment position="start"> <YouTubeIcon /> </InputAdornment>), }} />
+
+                            <Controller
+                                control={control}
+                                name="link5"
+                                render={({ field, formState: { errors } }) => (
+                                    <TextField
+                                        fullWidth
+                                        id="link5"
+                                        label=""
+                                        variant="standard"
+                                        InputProps={{ startAdornment: (<InputAdornment position="start"> <YouTubeIcon /> </InputAdornment>), }}
+                                        {...field}
+                                        inputRef={register('link5')}
+                                    />)}
+                            />
+
                         </Grid>
                         <Grid item sm={6}>
-                            <TextField fullWidth variant="standard" InputProps={{ startAdornment: (<InputAdornment position="start"> <GitHubIcon /> </InputAdornment>), }} />
+
+
+                            <Controller
+                                control={control}
+                                name="link6"
+                                render={({ field, formState: { errors } }) => (
+                                    <TextField
+                                        fullWidth
+                                        id="link6"
+                                        label=""
+                                        variant="standard"
+                                        InputProps={{ startAdornment: (<InputAdornment position="start"> <GitHubIcon /> </InputAdornment>), }}
+                                        {...field}
+                                        inputRef={register('link6')}
+                                    />)}
+                            />
+
                         </Grid>
                     </Grid>
                 </Grid>
                 <Grid container px={2} gap={2}>
                     <Grid container item display="flex" direction="row" spacing={2}>
                         <Grid item sm={6}>
-                            <TextField fullWidth label="Other Platform Name" variant="standard" />
+
+                            <Controller
+                                control={control}
+                                name="otherPlatform"
+                                render={({ field, formState: { errors } }) => (
+                                    <TextField
+                                        fullWidth
+                                        id="otherPlatform"
+                                        label="Other Platform Name"
+                                        variant="standard"
+                                        {...field}
+                                        inputRef={register('otherPlatform')}
+                                    />)}
+                            />
+
                         </Grid>
                         <Grid item sm={6}>
-                            <TextField fullWidth label="Paste Your Handle Link or url" variant="standard" />
+
+                            <Controller
+                                control={control}
+                                name="otherPlatformLink"
+                                render={({ field, formState: { errors } }) => (
+                                    <TextField
+                                        fullWidth
+                                        id="otherPlatformLink"
+                                        label="Paste Your Handle Link or url"
+                                        variant="standard"
+                                        {...field}
+                                        inputRef={register('otherPlatformLink')}
+                                    />)}
+                            />
+
                         </Grid>
                     </Grid>
                 </Grid>
@@ -112,7 +248,20 @@ const OtherInfo = () => {
                 <Grid container px={2} gap={2}>
                     <Grid container item display="flex" direction="row">
                         <Box sx={{ width: "620px", maxWidth: '100%', }} >
-                            <TextField fullWidth label="What do you like?" variant="standard" />
+
+                            <Controller
+                                control={control}
+                                name="hobbies"
+                                render={({ field, formState: { errors } }) => (
+                                    <TextField
+                                        fullWidth
+                                        id="hobbies"
+                                        label="What do you like?"
+                                        variant="standard"
+                                        {...field}
+                                        inputRef={register('hobbies')}
+                                    />)}
+                            />
                         </Box>
                     </Grid>
                 </Grid>
@@ -132,21 +281,75 @@ const OtherInfo = () => {
 
                     <Grid container item display="flex" direction="row" spacing={2}>
                         <Grid item sm={6}>
-                            <TextField fullWidth label="Referent Person" variant="standard" />
+
+                            <Controller
+                                control={control}
+                                name="RefName"
+                                render={({ field, formState: { errors } }) => (
+                                    <TextField
+                                        fullWidth
+                                        id="RefName"
+                                        label="Referent Person"
+                                        variant="standard"
+                                        {...field}
+                                        inputRef={register('RefName')}
+                                    />)}
+                            />
+
                         </Grid>
                         <Grid item sm={6}>
-                            <TextField fullWidth label="Organization Name (Job Profile)" variant="standard" />
+
+                            <Controller
+                                control={control}
+                                name="RefDetail"
+                                render={({ field, formState: { errors } }) => (
+                                    <TextField
+                                        fullWidth
+                                        id="RefDetail"
+                                        label="Organization Name (Job Profile)"
+                                        variant="standard"
+                                        {...field}
+                                        inputRef={register('RefDetail')}
+                                    />)}
+                            />
                         </Grid>
                     </Grid>
                     <Grid container display="flex" direction="column" justifyContent="center" alignItems="flex-end" spacing={2}>
                         <Grid item sm={6}>
                             <Box sx={{ width: "280px", maxWidth: '100%' }}>
-                                <TextField fullWidth label="Email" variant="standard" />
+
+                                <Controller
+                                    control={control}
+                                    name="RefEmail"
+                                    render={({ field, formState: { errors } }) => (
+                                        <TextField
+                                            fullWidth
+                                            id="RefEmail"
+                                            label="Email"
+                                            variant="standard"
+                                            {...field}
+                                            inputRef={register('RefEmail')}
+                                        />)}
+                                />
                             </Box >
                         </Grid>
                         <Grid item sm={6}>
                             <Box sx={{ width: "280px", maxWidth: '100%' }}>
-                                <TextField fullWidth label="Mobile or Phone" variant="standard" />
+
+                                <Controller
+                                    control={control}
+                                    name="RefMobile"
+                                    render={({ field, formState: { errors } }) => (
+                                        <TextField
+                                            fullWidth
+                                            id="RefMobile"
+                                            label="Mobile or Phone"
+                                            inputProps={{ type: 'number', pattern: '[0-9]*', step: "none" }}
+                                            variant="standard"
+                                            {...field}
+                                            inputRef={register('RefMobile')}
+                                        />)}
+                                />
                             </Box >
                         </Grid>
                     </Grid>

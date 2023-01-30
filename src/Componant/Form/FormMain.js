@@ -10,59 +10,13 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 import { FormProvider, useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as Yup from "yup";
+// import { yupResolver } from '@hookform/resolvers/yup';
+// import * as Yup from "yup";
 
-
-const validationSchema = Yup.object().shape({
-    jobTitle: Yup.string(),
-    firstName: Yup.string()
-        .required('Please fill the First Name'),
-    lastName: Yup.string()
-        .required('Please fill the Last Name'),
-    email: Yup.string()
-        .required('Email ID is required')
-        .email('Please fill valid Email ID'),
-    mobile: Yup.number().positive().integer().required('Please fill valid Mobile Number'),
-    pinCode: Yup.number().positive().integer(),
-    address: Yup.string(),
-    city: Yup.string().required('Please enter your City Name'),
-    state: Yup.string().required('Please enter your State Name'),
-    country: Yup.string().required('Please enter your country Name'),
-    objective: Yup.string(),
-    jobName: Yup.string(),
-    companyName: Yup.string(),
-    companyCity: Yup.string(),
-    companyState: Yup.string(),
-    jobSummary: Yup.string(),
-    qualification: Yup.string(),
-    university: Yup.string(),
-    universityCity: Yup.string(),
-    universityState: Yup.string(),
-    courseName: Yup.string(),
-    courseBy: Yup.string(),
-    keySkill: Yup.string(),
-    otherSkill: Yup.string(),
-    language: Yup.string(),
-    link1: Yup.string(),
-    link2: Yup.string(),
-    link3: Yup.string(),
-    link4: Yup.string(),
-    link5: Yup.string(),
-    link6: Yup.string(),
-    otherPlatform: Yup.string(),
-    otherPlatformLink: Yup.string(),
-    hobbies: Yup.string(),
-    RefName: Yup.string(),
-    RefDetail: Yup.string(),
-    RefEmail: Yup.string().email('Please fill valid Email ID'),
-    RefMobile: Yup.string(),
-})
 
 const FormMain = () => {
 
     const formMethod = useForm({
-        resolver: yupResolver(validationSchema),
         defaultValues: {
             jobTitle: "",
             firstName: "",

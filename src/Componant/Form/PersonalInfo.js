@@ -13,10 +13,9 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { Controller, useFormContext } from "react-hook-form";
 
-
 const PersonalInfo = () => {
 
-    const { control, register } = useFormContext();
+    const { control, formState: { errors } } = useFormContext();
 
     const [value, setValue] = useState(null);
 
@@ -78,14 +77,15 @@ const PersonalInfo = () => {
                             <Controller
                                 control={control}
                                 name="jobTitle"
-                                render={({ field, formState: { errors } }) => (
+                                rules={{ required: "Please write your required profile name" }}
+                                defaultValues=""
+                                render={({ field }) => (
                                     <TextField
                                         fullWidth
                                         id="job-title"
                                         label="Wanted Job Title"
                                         variant="standard"
                                         {...field}
-                                        inputRef={register('jobTitle')}
                                         error={Boolean(errors.jobTitle)}
                                         helperText={errors.jobTitle ? errors.jobTitle.message : " "}
                                     />)}
@@ -100,15 +100,15 @@ const PersonalInfo = () => {
                             <Controller
                                 control={control}
                                 name="firstName"
-                                render={({ field, formState: { errors } }) => (
+                                rules={{ required: "Please write your First name" }}
+                                render={({ field }) => (
                                     <TextField
                                         fullWidth
                                         label="First-Name"
                                         variant="standard"
                                         {...field}
-                                        {...register('firstName')}
                                         error={Boolean(errors.firstName)}
-                                        helperText={errors.firstName ? errors.firstName.message : " "}
+                                        helperText={errors.jobTitle ? errors.jobTitle.message : " "}
                                     />)}
                             />
                         </Grid>
@@ -116,13 +116,13 @@ const PersonalInfo = () => {
                             <Controller
                                 control={control}
                                 name="lastName"
-                                render={({ field, formState: { errors } }) => (
+                                rules={{ required: "Please write your Last name" }}
+                                render={({ field }) => (
                                     <TextField
                                         fullWidth
                                         label="Last-Name"
                                         variant="standard"
                                         {...field}
-                                        {...register('lastName')}
                                         error={Boolean(errors.lastName)}
                                         helperText={errors.lastName ? errors.lastName.message : " "}
                                     />)}
@@ -135,32 +135,30 @@ const PersonalInfo = () => {
                             <Controller
                                 control={control}
                                 name="email"
-                                render={({ field, formState: { errors } }) => (
+                                rules={{ required: "Please write your Last name" }}
+                                render={({ field }) => (
                                     <TextField
                                         fullWidth
                                         label="Email"
                                         id='email'
                                         variant="standard"
                                         {...field}
-                                        {...register('email')}
-                                        error={Boolean(errors.email)}
-                                        helperText={errors.email ? errors.email.message : " "}
                                     />)}
                             />
                         </Grid>
                         <Grid item sm={6}>
                             <Controller
                                 control={control}
+                                rules={{ required: "Please write your Mobile Number" }}
                                 name="mobile"
-                                render={({ field, formState: { errors } }) => (
+                                render={({ field }) => (
                                     <TextField
                                         fullWidth
                                         label="Mobile or Phone"
                                         id='mobile'
                                         variant="standard"
                                         {...field}
-                                        {...register('mobile')}
-                                        inputProps={{ type: 'number', pattern: '[0-9]*', step: 1 }}
+                                        inputProps={{ type: 'number', placeholder: '+91-0000-000-000', min: "0", }}
                                         error={Boolean(errors.mobile)}
                                         helperText={errors.mobile ? errors.mobile.message : " "}
                                     />)}
@@ -173,14 +171,15 @@ const PersonalInfo = () => {
                             <Controller
                                 control={control}
                                 name="address"
-                                render={({ field, formState: { errors } }) => (
+                                rules={{ required: "Please write your Residential and Office Address" }}
+                                render={({ field }) => (
                                     <TextField
                                         fullWidth
                                         label="Address"
-                                        id='address'
                                         variant="standard"
                                         {...field}
-                                        {...register('address')}
+                                        error={Boolean(errors.address)}
+                                        helperText={errors.address ? errors.address.message : " "}
                                     />)}
                             />
                         </Box>
@@ -188,27 +187,30 @@ const PersonalInfo = () => {
 
                     <Grid container item display="flex" direction="row" spacing={2} >
                         <Grid item sm={6}>
+
+
                             <Controller
                                 control={control}
                                 name="city"
-                                render={({ field, formState: { errors } }) => (
+                                rules={{ required: "Please write your city name" }}
+                                render={({ field }) => (
                                     <TextField
                                         fullWidth
                                         label="City"
-                                        id='city'
                                         variant="standard"
                                         {...field}
-                                        {...register('city')}
                                         error={Boolean(errors.city)}
                                         helperText={errors.city ? errors.city.message : " "}
                                     />)}
                             />
+
+
                         </Grid>
                         <Grid item sm={6}>
                             <Controller
                                 control={control}
                                 name="state"
-                                render={({ field, formState: { errors } }) => (
+                                render={({ field }) => (
                                     <TextField
                                         fullWidth
 
@@ -216,7 +218,6 @@ const PersonalInfo = () => {
                                         id='state'
                                         variant="standard"
                                         {...field}
-                                        {...register('state')}
                                         error={Boolean(errors.state)}
                                         helperText={errors.city ? errors.state.message : " "}
                                     />)}
@@ -229,14 +230,13 @@ const PersonalInfo = () => {
                             <Controller
                                 control={control}
                                 name="pinCode"
-                                render={({ field, formState: { errors } }) => (
+                                render={({ field }) => (
                                     <TextField
                                         fullWidth
                                         label="Postal Code"
                                         id='pinCode'
                                         variant="standard"
                                         {...field}
-                                        {...register('pinCode')}
                                         inputProps={{ type: 'number', pattern: '[0-9]*', step: "none" }}
                                     />)}
                             />
@@ -245,14 +245,13 @@ const PersonalInfo = () => {
                             <Controller
                                 control={control}
                                 name="country"
-                                render={({ field, formState: { errors } }) => (
+                                render={({ field }) => (
                                     <TextField
                                         fullWidth
                                         label="Country"
                                         id='country'
                                         variant="standard"
                                         {...field}
-                                        {...register('country')}
                                         error={Boolean(errors.country)}
                                         helperText={errors.city ? errors.country.message : " "}
                                     />)}

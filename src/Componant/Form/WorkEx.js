@@ -28,6 +28,7 @@ const WorkExp = () => {
                     <Controller
                         control={control}
                         name="objective"
+                        rules={{ required: "Please write your First name" }}
                         render={({ field, formState: { errors } }) => (
                             <TextField
                                 fullWidth

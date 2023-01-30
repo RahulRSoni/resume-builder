@@ -1,4 +1,4 @@
- import * as React from 'react';
+import * as React from 'react';
 import { useState } from "react";
 import { Box, Grid, Typography, Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
@@ -28,13 +28,15 @@ const WorkExp = () => {
                     <Controller
                         control={control}
                         name="objective"
-                        rules={{ required: "Please write your First name" }}
+                        rules={{ required: "Please write at least 300 words summary." }}
                         render={({ field, formState: { errors } }) => (
                             <TextField
                                 fullWidth
                                 id="objective"
                                 label="Objective"
                                 variant="standard"
+                                placeholder='Write your work experience in a summary'
+                                {...register("objective", { minLength: { value: 300, message: "Please write at least 300 words summary." }})}
                                 multiline rows={4}
                                 {...field}
                                 inputRef={register('objective')}
@@ -55,6 +57,7 @@ const WorkExp = () => {
                         <Controller
                             control={control}
                             name="jobName"
+                            rules={{ required: "Please fill your previous job roll" }}
                             render={({ field, formState: { errors } }) => (
                                 <TextField
                                     fullWidth
@@ -75,6 +78,7 @@ const WorkExp = () => {
                         <Controller
                             control={control}
                             name="companyName"
+                            rules={{ required: "Please fill your previous employer" }}
                             render={({ field, formState: { errors } }) => (
                                 <TextField
                                     fullWidth
@@ -96,6 +100,7 @@ const WorkExp = () => {
                         <Controller
                             control={control}
                             name="companyCity"
+                            rules={{ required: "Please fill your previous employment city" }}
                             render={({ field, formState: { errors } }) => (
                                 <TextField
                                     fullWidth
@@ -110,10 +115,11 @@ const WorkExp = () => {
                         />
                     </Grid>
                     <Grid item sm={6}>
-                        
-                    <Controller
+
+                        <Controller
                             control={control}
                             name="companyState"
+                            rules={{ required: "Please fill your previous employment state" }}
                             render={({ field, formState: { errors } }) => (
                                 <TextField
                                     fullWidth
@@ -126,7 +132,7 @@ const WorkExp = () => {
                                     helperText={errors.companyState ? errors.companyState.message : " "}
                                 />)}
                         />
-                    
+
                     </Grid>
                 </Grid>
 
@@ -137,6 +143,7 @@ const WorkExp = () => {
                             <Controller
                                 control={control}
                                 name="jobSummary"
+                                rules={{ required: "Please mention your job roll above as on your previous job profile" }}
                                 render={({ field, formState: { errors } }) => (
                                     <TextField
                                         fullWidth
@@ -159,10 +166,10 @@ const WorkExp = () => {
                     <Grid item>
                         <FormControl variant="standard" size="small" label={'margin="dense"'}>
                             <LocalizationProvider dateAdapter={AdapterDayjs} >
-                                <DatePicker label="Start Date" 
+                                <DatePicker label="Start Date"
                                     views={['month', 'year']}
                                     minDate={dayjs('2012-03-01')}
-                                    maxDate={dayjs('2023-06-01')} 
+                                    maxDate={dayjs('2023-06-01')}
                                     value={startDate}
                                     onChange={(newValue) => { setStartDate(newValue); }}
                                     renderInput={(params) => <TextField {...params} variant="standard" fullWidth />} />

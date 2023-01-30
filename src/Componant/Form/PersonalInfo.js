@@ -23,23 +23,37 @@ const PersonalInfo = () => {
 
     const [imageUrl, setImageUrl] = useState(null);
 
-    const [gender, setGender] = React.useState('');
+    // const [gender, setGender] = React.useState('');
 
-    const handleChange = (event) => {
-        setGender(event.target.value);
-    };
+    // const handleChange = (event) => {
+    //     setGender(event.target.value);
+    // };
 
-    const [marital, setMarital] = React.useState('');
+    // const [marital, setMarital] = React.useState('');
 
-    const handleChangeMaterial = (event) => {
-        setMarital(event.target.value);
-    };
+    // const handleChangeMaterial = (event) => {
+    //     setMarital(event.target.value);
+    // };
 
     useEffect(() => {
         if (selectedImage) {
             setImageUrl(URL.createObjectURL(selectedImage));
         }
     }, [selectedImage]);
+
+
+    const personGender = [
+        { value: "male", text: "Male" },
+        { value: "female", text: "Female" },
+        { value: "other", text: "Other" },
+    ];
+
+    const maritalStatus = [
+        { value: "single", text: "Single" },
+        { value: "married", text: "Married" },
+        { value: "divorced", text: "Divorced" },
+        { value: "widowed", text: "Widowed" },
+    ];
 
     return (
 
@@ -108,7 +122,7 @@ const PersonalInfo = () => {
                                         variant="standard"
                                         {...field}
                                         error={Boolean(errors.firstName)}
-                                        helperText={errors.jobTitle ? errors.jobTitle.message : " "}
+                                        helperText={errors.firstName ? errors.firstName.message : " "}
                                     />)}
                             />
                         </Grid>
@@ -135,7 +149,6 @@ const PersonalInfo = () => {
                             <Controller
                                 control={control}
                                 name="email"
-                                rules={{ required: "Please write your Last name" }}
                                 render={({ field }) => (
                                     <TextField
                                         fullWidth
@@ -171,15 +184,12 @@ const PersonalInfo = () => {
                             <Controller
                                 control={control}
                                 name="address"
-                                rules={{ required: "Please write your Residential and Office Address" }}
                                 render={({ field }) => (
                                     <TextField
                                         fullWidth
                                         label="Address"
                                         variant="standard"
                                         {...field}
-                                        error={Boolean(errors.address)}
-                                        helperText={errors.address ? errors.address.message : " "}
                                     />)}
                             />
                         </Box>
@@ -187,8 +197,6 @@ const PersonalInfo = () => {
 
                     <Grid container item display="flex" direction="row" spacing={2} >
                         <Grid item sm={6}>
-
-
                             <Controller
                                 control={control}
                                 name="city"
@@ -203,17 +211,15 @@ const PersonalInfo = () => {
                                         helperText={errors.city ? errors.city.message : " "}
                                     />)}
                             />
-
-
                         </Grid>
                         <Grid item sm={6}>
                             <Controller
                                 control={control}
                                 name="state"
+                                rules={{ required: "Please write your state name" }}
                                 render={({ field }) => (
                                     <TextField
                                         fullWidth
-
                                         label="State"
                                         id='state'
                                         variant="standard"
@@ -245,6 +251,7 @@ const PersonalInfo = () => {
                             <Controller
                                 control={control}
                                 name="country"
+                                rules={{ required: "Please write your country name" }}
                                 render={({ field }) => (
                                     <TextField
                                         fullWidth
@@ -258,53 +265,64 @@ const PersonalInfo = () => {
                             />
                         </Grid>
                     </Grid>
+                    <Grid container direction="row" justifyContent="space-between" alignItems="flex-end">
+                        <Grid item>
+                            <FormControl variant="standard" sx={{ width: 150 }} >
+                                <Controller
+                                    control={control}
+                                    name="age"
+                                    render={({ field }) => (<LocalizationProvider dateAdapter={AdapterDayjs} >
+                                        <DatePicker label="DOB" value={value}
+                                            inputFormat="DD-MM-YYYY"
+                                            onChange={(newValue) => { setValue(newValue); }}
+                                            renderInput={(params) => <TextField
+                                                {...params}
+                                                {...field}
+                                                variant="standard" />} />
+                                    </LocalizationProvider>
+                                    )}
+                                />
+                            </FormControl>
+                        </Grid>
+                        <Grid item >
+                            <FormControl variant="standard" sx={{ minWidth: 150 }}>
+                                <InputLabel id="gender-selection">Gender</InputLabel>
+                                <Controller
+                                    control={control}
+                                    name="gender"
+                                    render={({ field }) => (<Select labelId="gender-selection" {...field}>
+                                        {personGender.map((person) => (
+                                            <MenuItem key={person.value} value={person.value}>
+                                                {person.text}
+                                            </MenuItem>
+                                        ))}
+                                    </Select>
+                                    )}
+                                />
+                            </FormControl>
 
-                    <Grid container item display="flex" justifyContent="flex-end" >
-                        <FormControl variant="standard" sx={{ width: "25px", minWidth: "25%" }} size="small" label={'margin="dense"'}>
-                            <LocalizationProvider dateAdapter={AdapterDayjs} >
-                                <DatePicker label="DOB" name="age" value={value}
-                                    inputFormat="DD-MM-YYYY"
-                                    onChange={(newValue) => { setValue(newValue); }}
-                                    renderInput={(params) => <TextField {...params} variant="standard" fullWidth />} />
-                            </LocalizationProvider>
-                        </FormControl>
-                    </Grid>
-
-                    <Grid container item display="flex" justifyContent="flex-end" >
-                        <FormControl variant="standard" sx={{ width: "25px", minWidth: "25%" }} size="small" label={'margin="dense"'}>
-                            <InputLabel id="gender-selection">Gender</InputLabel>
-                            <Select
-                                labelId="gender-selection"
-                                value={gender}
-                                onChange={handleChange}
-                                label="gender">
-                                <MenuItem value=""><em>none</em></MenuItem>
-                                <MenuItem value={5}>Male</MenuItem>
-                                <MenuItem value={10}>Female</MenuItem>
-                                <MenuItem value={15}>Other</MenuItem>
-                            </Select>
-                        </FormControl>
-                    </Grid>
-
-                    <Grid container item display="flex" justifyContent="flex-end">
-                        <FormControl variant="standard" sx={{ width: "25px", minWidth: "25%" }} size="small" label={'margin="dense"'}>
-                            <InputLabel id="gender-selection">Marital status</InputLabel>
-                            <Select
-                                labelId="gender-selection"
-                                value={marital}
-                                onChange={handleChangeMaterial}
-                                label="gender">
-                                <MenuItem value=""><em>none</em></MenuItem>
-                                <MenuItem value={5}>Single</MenuItem>
-                                <MenuItem value={10}>Married</MenuItem>
-                                <MenuItem value={15}>Divorced</MenuItem>
-                                <MenuItem value={20}>Widowed</MenuItem>
-                            </Select>
-                        </FormControl>
+                        </Grid>
+                        <Grid item >
+                            <FormControl variant="standard" sx={{ minWidth: 150 }}>
+                                <InputLabel id="status-selection">Marital status</InputLabel>
+                                <Controller
+                                    control={control}
+                                    name="maritalStatus"
+                                    render={({ field }) => (<Select labelId="status-selection" {...field}>
+                                        {maritalStatus.map((status) => (
+                                            <MenuItem key={status.value} value={status.value}>
+                                                {status.text}
+                                            </MenuItem>
+                                        ))}
+                                    </Select>
+                                    )}
+                                />
+                            </FormControl>
+                        </Grid>
                     </Grid>
                 </Grid>
-            </Grid >
-        </FormControl>
+            </Grid>
+        </FormControl >
     )
 }
 

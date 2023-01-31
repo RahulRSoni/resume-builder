@@ -1,3 +1,4 @@
+import React from 'react';
 import Navbar from './Componant/Navbar';
 import { Routes, Route } from "react-router-dom";
 import Home from './Componant/Home';

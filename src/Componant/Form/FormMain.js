@@ -1,3 +1,4 @@
+import React from "react"
 import { Tab, Box, Grid, Paper, Button } from "@mui/material"
 import { TabContext, TabList, TabPanel } from "@mui/lab"
 import { useState } from "react"
@@ -37,6 +38,8 @@ const FormMain = () => {
             companyCity:'',
             companyState:'',
             jobSummary:'',
+            jobStarted:"",
+            jobEnd:"",
             qualification:'',
             university:'',
             universityCity:'',

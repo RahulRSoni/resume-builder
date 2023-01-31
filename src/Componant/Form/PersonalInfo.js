@@ -11,13 +11,14 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+// import dayjs from 'dayjs';
 import { Controller, useFormContext } from "react-hook-form";
 
 const PersonalInfo = () => {
 
     const { control, formState: { errors } } = useFormContext();
 
-    const [value, setValue] = useState(null);
+    const [dob, setDob] = useState(null);
 
     const [selectedImage, setSelectedImage] = useState(null);
 
@@ -115,6 +116,7 @@ const PersonalInfo = () => {
                                 control={control}
                                 name="firstName"
                                 rules={{ required: "Please write your First name" }}
+                                defaultValues=""
                                 render={({ field }) => (
                                     <TextField
                                         fullWidth
@@ -131,6 +133,7 @@ const PersonalInfo = () => {
                                 control={control}
                                 name="lastName"
                                 rules={{ required: "Please write your Last name" }}
+                                defaultValues=""
                                 render={({ field }) => (
                                     <TextField
                                         fullWidth
@@ -149,6 +152,7 @@ const PersonalInfo = () => {
                             <Controller
                                 control={control}
                                 name="email"
+                                defaultValues=""
                                 render={({ field }) => (
                                     <TextField
                                         fullWidth
@@ -164,6 +168,7 @@ const PersonalInfo = () => {
                                 control={control}
                                 rules={{ required: "Please write your Mobile Number" }}
                                 name="mobile"
+                                defaultValues=""
                                 render={({ field }) => (
                                     <TextField
                                         fullWidth
@@ -184,6 +189,7 @@ const PersonalInfo = () => {
                             <Controller
                                 control={control}
                                 name="address"
+                                defaultValues=""
                                 render={({ field }) => (
                                     <TextField
                                         fullWidth
@@ -200,6 +206,7 @@ const PersonalInfo = () => {
                             <Controller
                                 control={control}
                                 name="city"
+                                defaultValues=""
                                 rules={{ required: "Please write your city name" }}
                                 render={({ field }) => (
                                     <TextField
@@ -216,6 +223,7 @@ const PersonalInfo = () => {
                             <Controller
                                 control={control}
                                 name="state"
+                                defaultValues=""
                                 rules={{ required: "Please write your state name" }}
                                 render={({ field }) => (
                                     <TextField
@@ -236,6 +244,7 @@ const PersonalInfo = () => {
                             <Controller
                                 control={control}
                                 name="pinCode"
+                                defaultValues=""
                                 render={({ field }) => (
                                     <TextField
                                         fullWidth
@@ -251,6 +260,7 @@ const PersonalInfo = () => {
                             <Controller
                                 control={control}
                                 name="country"
+                                defaultValues=""
                                 rules={{ required: "Please write your country name" }}
                                 render={({ field }) => (
                                     <TextField
@@ -271,13 +281,15 @@ const PersonalInfo = () => {
                                 <Controller
                                     control={control}
                                     name="age"
-                                    render={({ field }) => (<LocalizationProvider dateAdapter={AdapterDayjs} >
-                                        <DatePicker label="DOB" value={value}
+                                    defaultValues=""
+                                    render={({ field: { name, ...field } }) => (<LocalizationProvider dateAdapter={AdapterDayjs} >
+                                        <DatePicker label="DOB" value={dob}
                                             inputFormat="DD-MM-YYYY"
-                                            onChange={(newValue) => { setValue(newValue); }}
+                                            onChange={(newValue) => { setDob(newValue); }}
                                             renderInput={(params) => <TextField
                                                 {...params}
                                                 {...field}
+                                                name={name}
                                                 variant="standard" />} />
                                     </LocalizationProvider>
                                     )}
@@ -290,9 +302,10 @@ const PersonalInfo = () => {
                                 <Controller
                                     control={control}
                                     name="gender"
-                                    render={({ field }) => (<Select labelId="gender-selection" {...field}>
+                                    render={({ field }) => (<Select labelId="gender-selection"  {...field}>
                                         {personGender.map((person) => (
                                             <MenuItem key={person.value} value={person.value}>
+
                                                 {person.text}
                                             </MenuItem>
                                         ))}
@@ -308,6 +321,7 @@ const PersonalInfo = () => {
                                 <Controller
                                     control={control}
                                     name="maritalStatus"
+                                    defaultValues={{}}
                                     render={({ field }) => (<Select labelId="status-selection" {...field}>
                                         {maritalStatus.map((status) => (
                                             <MenuItem key={status.value} value={status.value}>

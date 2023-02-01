@@ -3,34 +3,25 @@ import React from 'react'
 import { useFormContext, Controller } from 'react-hook-form'
 
 
-const FormInputText = ( name, label, variant = "standard", ...restProps  ) => {
+const FormInputText = ( name, label, rules  ) => {
 
-  const formContext = useFormContext();
+  const { control, formState: { errors } } = useFormContext();
 
   return (
     <Controller
-    name={name}
-    control = {formContext}
-      render={({ 
-        field: { onChange, onBlur, value, ref }, 
-        fieldState: { error },
-        formState, 
-      }) => (
-        <TextField
-          helperText={error ? error.message : null}
-          error={!!error}
-          onChange={onChange}
-          label={label}
-          onBlur={onBlur}
-          value={value}
-          variant={variant}
-          ref={ref}
-          {...restProps}
-        />
-      )}
-      // rules={{required: "Required!"}}
+      control={control}
+      name={name}
+      rules={rules}
+      render={({ field }) =>
+      (<TextField
+        fullWidth
+        label={label}
+        variant="standard"
+        {...field}
+        error={Boolean(errors.name)}
+        helperText={errors.name ? errors.jobTitle.name : " "}
+      />)}
     />
-
   )
 }
 

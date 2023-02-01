@@ -19,6 +19,16 @@ const FormMain = () => {
 
     const formMethod = useForm({
         defaultValues: {
+            jobTitle:"",
+            firstName:"",
+            lastName:"",
+            email:"",
+            mobile:"",
+            address:"",
+            city:"",
+            state:"",
+            pinCode:"",
+            country:"",
             gender: "",
             maritalStatus: "",
         }

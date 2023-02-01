@@ -18,7 +18,7 @@ const PersonalInfo = () => {
 
     const { control, formState: { errors } } = useFormContext();
 
-    const [dob, setDob] = useState(null);
+    const [dob, setDob] = useState();
 
     const [selectedImage, setSelectedImage] = useState(null);
 
@@ -44,16 +44,16 @@ const PersonalInfo = () => {
 
 
     const personGender = [
-        { value: "male", text: "Male" },
-        { value: "female", text: "Female" },
-        { value: "other", text: "Other" },
+        { value: "Male", text: "Male" },
+        { value: "Female", text: "Female" },
+        { value: "Other", text: "Other" },
     ];
 
     const maritalStatus = [
-        { value: "single", text: "Single" },
-        { value: "married", text: "Married" },
-        { value: "divorced", text: "Divorced" },
-        { value: "widowed", text: "Widowed" },
+        { value: "Single", text: "Single" },
+        { value: "Married", text: "Married" },
+        { value: "Divorced", text: "Divorced" },
+        { value: "Widowed", text: "Widowed" },
     ];
 
     return (
@@ -93,17 +93,16 @@ const PersonalInfo = () => {
                                 control={control}
                                 name="jobTitle"
                                 rules={{ required: "Please write your required profile name" }}
-                                defaultValues=""
-                                render={({ field }) => (
-                                    <TextField
-                                        fullWidth
-                                        id="job-title"
-                                        label="Wanted Job Title"
-                                        variant="standard"
-                                        {...field}
-                                        error={Boolean(errors.jobTitle)}
-                                        helperText={errors.jobTitle ? errors.jobTitle.message : " "}
-                                    />)}
+                                render={({ field }) =>
+                                (<TextField
+                                    fullWidth
+                                    id="job-title"
+                                    label="Wanted Job Title"
+                                    variant="standard"
+                                    {...field}
+                                    error={Boolean(errors.jobTitle)}
+                                    helperText={errors.jobTitle ? errors.jobTitle.message : " "}
+                                />)}
                             />
                         </Box>
                     </Grid>
@@ -281,19 +280,22 @@ const PersonalInfo = () => {
                                 <Controller
                                     control={control}
                                     name="age"
-                                    defaultValues=""
-                                    render={({ field: { name, ...field } }) => (<LocalizationProvider dateAdapter={AdapterDayjs} >
-                                        <DatePicker label="DOB" value={dob}
-                                            inputFormat="DD-MM-YYYY"
-                                            onChange={(newValue) => { setDob(newValue); }}
-                                            renderInput={(params) => <TextField
-                                                {...params}
-                                                {...field}
-                                                name={name}
-                                                variant="standard" />} />
-                                    </LocalizationProvider>
+                                    render={({ field: { name, ...field } }) => (
+                                        <LocalizationProvider dateAdapter={AdapterDayjs} >
+                                            <DatePicker label="DOB" value={dob}
+                                                inputFormat="DD-MM-YYYY"
+                                                onChange={(newValue) => {
+                                                    let newDate = newValue["$d"].toLocaleDateString();
+                                                    setDob(newDate);
+                                                }}
+                                                renderInput={(params) => <TextField
+                                                    {...params}
+                                                    {...field}
+                                                    variant="standard" />} />
+                                        </LocalizationProvider>
                                     )}
                                 />
+
                             </FormControl>
                         </Grid>
                         <Grid item >
@@ -305,7 +307,6 @@ const PersonalInfo = () => {
                                     render={({ field }) => (<Select labelId="gender-selection"  {...field}>
                                         {personGender.map((person) => (
                                             <MenuItem key={person.value} value={person.value}>
-
                                                 {person.text}
                                             </MenuItem>
                                         ))}

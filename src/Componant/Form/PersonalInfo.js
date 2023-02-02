@@ -16,9 +16,9 @@ import { Controller, useFormContext } from "react-hook-form";
 
 const PersonalInfo = () => {
 
-    const { control, formState: { errors } } = useFormContext();
+    const { control, register } = useFormContext();
 
-    const [dob, setDob] = useState();
+    const [dob, setDob] = useState(null);
 
     const [selectedImage, setSelectedImage] = useState(null);
 
@@ -93,13 +93,13 @@ const PersonalInfo = () => {
                                 control={control}
                                 name="jobTitle"
                                 rules={{ required: "Please write your required profile name" }}
-                                render={({ field }) =>
+                                render={({ field, formState: { errors } }) =>
                                 (<TextField
                                     fullWidth
-                                    id="job-title"
                                     label="Wanted Job Title"
                                     variant="standard"
                                     {...field}
+                                    inputRef={register('jobTitle')}
                                     error={Boolean(errors.jobTitle)}
                                     helperText={errors.jobTitle ? errors.jobTitle.message : " "}
                                 />)}
@@ -115,13 +115,13 @@ const PersonalInfo = () => {
                                 control={control}
                                 name="firstName"
                                 rules={{ required: "Please write your First name" }}
-                                defaultValues=""
-                                render={({ field }) => (
+                                render={({ field, formState: { errors } }) => (
                                     <TextField
                                         fullWidth
                                         label="First-Name"
                                         variant="standard"
                                         {...field}
+                                        inputRef={register('firstName')}
                                         error={Boolean(errors.firstName)}
                                         helperText={errors.firstName ? errors.firstName.message : " "}
                                     />)}
@@ -132,12 +132,12 @@ const PersonalInfo = () => {
                                 control={control}
                                 name="lastName"
                                 rules={{ required: "Please write your Last name" }}
-                                defaultValues=""
-                                render={({ field }) => (
+                                render={({ field, formState: { errors } }) => (
                                     <TextField
                                         fullWidth
                                         label="Last-Name"
                                         variant="standard"
+                                        inputRef={register('lastName')}
                                         {...field}
                                         error={Boolean(errors.lastName)}
                                         helperText={errors.lastName ? errors.lastName.message : " "}
@@ -151,12 +151,11 @@ const PersonalInfo = () => {
                             <Controller
                                 control={control}
                                 name="email"
-                                defaultValues=""
-                                render={({ field }) => (
+                                render={({ field, formState: { errors } }) => (
                                     <TextField
                                         fullWidth
                                         label="Email"
-                                        id='email'
+                                        inputRef={register('email')}
                                         variant="standard"
                                         {...field}
                                     />)}
@@ -167,13 +166,12 @@ const PersonalInfo = () => {
                                 control={control}
                                 rules={{ required: "Please write your Mobile Number" }}
                                 name="mobile"
-                                defaultValues=""
-                                render={({ field }) => (
+                                render={({ field, formState: { errors } }) => (
                                     <TextField
                                         fullWidth
                                         label="Mobile or Phone"
-                                        id='mobile'
                                         variant="standard"
+                                        inputRef={register('mobile')}
                                         {...field}
                                         inputProps={{ type: 'number', placeholder: '+91-0000-000-000', min: "0", }}
                                         error={Boolean(errors.mobile)}
@@ -188,13 +186,13 @@ const PersonalInfo = () => {
                             <Controller
                                 control={control}
                                 name="address"
-                                defaultValues=""
                                 render={({ field }) => (
                                     <TextField
                                         fullWidth
                                         label="Address"
                                         variant="standard"
                                         {...field}
+                                        inputRef={register('address')}
                                     />)}
                             />
                         </Box>
@@ -205,13 +203,13 @@ const PersonalInfo = () => {
                             <Controller
                                 control={control}
                                 name="city"
-                                defaultValues=""
                                 rules={{ required: "Please write your city name" }}
-                                render={({ field }) => (
+                                render={({ field, formState: { errors } }) => (
                                     <TextField
                                         fullWidth
                                         label="City"
                                         variant="standard"
+                                        inputRef={register('city')}
                                         {...field}
                                         error={Boolean(errors.city)}
                                         helperText={errors.city ? errors.city.message : " "}
@@ -222,14 +220,13 @@ const PersonalInfo = () => {
                             <Controller
                                 control={control}
                                 name="state"
-                                defaultValues=""
                                 rules={{ required: "Please write your state name" }}
-                                render={({ field }) => (
+                                render={({ field, formState: { errors } }) => (
                                     <TextField
                                         fullWidth
                                         label="State"
-                                        id='state'
                                         variant="standard"
+                                        inputRef={register('state')}
                                         {...field}
                                         error={Boolean(errors.state)}
                                         helperText={errors.city ? errors.state.message : " "}
@@ -243,13 +240,12 @@ const PersonalInfo = () => {
                             <Controller
                                 control={control}
                                 name="pinCode"
-                                defaultValues=""
                                 render={({ field }) => (
                                     <TextField
                                         fullWidth
                                         label="Postal Code"
-                                        id='pinCode'
                                         variant="standard"
+                                        inputRef={register('pinCode')}
                                         {...field}
                                         inputProps={{ type: 'number', pattern: '[0-9]*', step: "none" }}
                                     />)}
@@ -259,15 +255,14 @@ const PersonalInfo = () => {
                             <Controller
                                 control={control}
                                 name="country"
-                                defaultValues=""
                                 rules={{ required: "Please write your country name" }}
-                                render={({ field }) => (
+                                render={({ field, formState: { errors } }) => (
                                     <TextField
                                         fullWidth
                                         label="Country"
-                                        id='country'
                                         variant="standard"
                                         {...field}
+                                        inputRef={register('country')}
                                         error={Boolean(errors.country)}
                                         helperText={errors.city ? errors.country.message : " "}
                                     />)}
@@ -280,13 +275,15 @@ const PersonalInfo = () => {
                                 <Controller
                                     control={control}
                                     name="age"
-                                    render={({ field: { name, ...field } }) => (
+                                    render={({ field }) => (
                                         <LocalizationProvider dateAdapter={AdapterDayjs} >
-                                            <DatePicker label="DOB" value={dob}
+                                            <DatePicker
+                                                label="DOB"
+                                                value={dob}
                                                 inputFormat="DD-MM-YYYY"
+                                                inputRef={register('age')}
                                                 onChange={(newValue) => {
-                                                    let newDate = newValue["$d"].toLocaleDateString();
-                                                    setDob(newDate);
+                                                    setDob(newValue);
                                                 }}
                                                 renderInput={(params) => <TextField
                                                     {...params}
@@ -304,7 +301,7 @@ const PersonalInfo = () => {
                                 <Controller
                                     control={control}
                                     name="gender"
-                                    render={({ field }) => (<Select labelId="gender-selection"  {...field}>
+                                    render={({ field }) => (<Select labelId="gender-selection"  {...field} inputRef={register('gender')}>
                                         {personGender.map((person) => (
                                             <MenuItem key={person.value} value={person.value}>
                                                 {person.text}
@@ -323,7 +320,7 @@ const PersonalInfo = () => {
                                     control={control}
                                     name="maritalStatus"
                                     defaultValues={{}}
-                                    render={({ field }) => (<Select labelId="status-selection" {...field}>
+                                    render={({ field, formState: { errors } }) => (<Select labelId="status-selection" {...field} inputRef={register('maritalStatus')}>
                                         {maritalStatus.map((status) => (
                                             <MenuItem key={status.value} value={status.value}>
                                                 {status.text}

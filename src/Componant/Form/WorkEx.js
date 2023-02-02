@@ -28,19 +28,16 @@ const WorkExp = () => {
                     <Controller
                         control={control}
                         name="objective"
-                        defaultValues=""
                         rules={{ required: "Please write at least 300 words summary." }}
                         render={({ field, formState: { errors } }) => (
                             <TextField
                                 fullWidth
-                                id="objective"
                                 label="Objective"
                                 variant="standard"
                                 placeholder='Write your work experience in a summary'
-                                {...register("objective", { minLength: { value: 300, message: "Please write at least 300 words summary." } })}
+                                inputRef={register("objective", { minLength: { value: 300, message: "Please write at least 300 words summary." } })}
                                 multiline rows={4}
                                 {...field}
-                                inputRef={register('objective')}
                                 error={Boolean(errors.objective)}
                                 helperText={errors.objective ? errors.objective.message : " "}
                             />)}
@@ -56,7 +53,6 @@ const WorkExp = () => {
                         <Controller
                             control={control}
                             name="jobName"
-                            defaultValues=""
                             rules={{ required: "Please fill your previous job roll" }}
                             render={({ field, formState: { errors } }) => (
                                 <TextField
@@ -75,7 +71,6 @@ const WorkExp = () => {
                         <Controller
                             control={control}
                             name="companyName"
-                            defaultValues=""
                             rules={{ required: "Please fill your previous employer" }}
                             render={({ field, formState: { errors } }) => (
                                 <TextField
@@ -97,7 +92,6 @@ const WorkExp = () => {
                         <Controller
                             control={control}
                             name="companyCity"
-                            defaultValues=""
                             rules={{ required: "Please fill your previous employment city" }}
                             render={({ field, formState: { errors } }) => (
                                 <TextField
@@ -116,7 +110,6 @@ const WorkExp = () => {
                         <Controller
                             control={control}
                             name="companyState"
-                            defaultValues=""
                             rules={{ required: "Please fill your previous employment state" }}
                             render={({ field, formState: { errors } }) => (
                                 <TextField
@@ -137,7 +130,6 @@ const WorkExp = () => {
                         <Controller
                             control={control}
                             name="jobSummary"
-                            defaultValues=""
                             rules={{ required: "Please mention your job roll above as on your previous job profile" }}
                             render={({ field, formState: { errors } }) => (
                                 <TextField
@@ -161,7 +153,6 @@ const WorkExp = () => {
                             <Controller
                                 control={control}
                                 name="jobStarted"
-                                defaultValues={null}
                                 render={({ field: { name , ...field } }) => (<LocalizationProvider dateAdapter={AdapterDayjs} >
                                     <DatePicker label="Started On" 
                                         inputFormat="MMM-YYYY"
@@ -184,7 +175,6 @@ const WorkExp = () => {
                             <Controller
                                 control={control}
                                 name="jobEnd"
-                                defaultValues={null}
                                 render={({ field: { name, ...field } }) => (<LocalizationProvider dateAdapter={AdapterDayjs} >
                                     <DatePicker label="End On" 
                                     inputFormat="MMM-YYYY"

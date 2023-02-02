@@ -24,6 +24,7 @@ const FormMain = () => {
             lastName:"",
             email:"",
             mobile:"",
+            age:null,
             address:"",
             city:"",
             state:"",
@@ -31,6 +32,15 @@ const FormMain = () => {
             country:"",
             gender: "",
             maritalStatus: "",
+            objective:"",
+            jobName:"",
+            companyName:"",
+            companyCity:"",
+            companyState:"",
+            jobSummary:"",
+            jobStarted: null,
+            jobEnd:null,
+
         }
     });
 

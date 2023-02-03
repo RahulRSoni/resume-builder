@@ -282,17 +282,15 @@ const PersonalInfo = () => {
                                                 value={dob}
                                                 inputFormat="DD-MM-YYYY"
                                                 inputRef={register('age')}
-                                                onChange={(newValue) => {
-                                                    setDob(newValue);
-                                                }}
-                                                renderInput={(params) => <TextField
-                                                    {...params}
-                                                    {...field}
-                                                    variant="standard" />} />
+                                                onChange={(newValue) => { setDob(newValue) }}
+                                                renderInput={(params) =>
+                                                    <TextField
+                                                        {...params}
+                                                        {...field}
+                                                        variant="standard" />} />
                                         </LocalizationProvider>
                                     )}
                                 />
-
                             </FormControl>
                         </Grid>
                         <Grid item >

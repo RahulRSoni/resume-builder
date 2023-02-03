@@ -33,7 +33,6 @@ const OtherInfo = () => {
                                 render={({ field, formState: { errors } }) => (
                                     <TextField
                                         fullWidth
-                                        id="language"
                                         label="Language"
                                         variant="standard"
                                         {...field}

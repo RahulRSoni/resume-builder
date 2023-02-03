@@ -146,17 +146,16 @@ const WorkExp = () => {
                         />
                     </Box>
                 </Grid>
-                
+
                 <Grid container item display="flex" direction="row" justifyContent="flex-end" spacing={2} >
                     <Grid item>
                         <FormControl variant="standard" sx={{ width: 150 }} >
                             <Controller
                                 control={control}
                                 name="jobStarted"
-                                render={({ field: { name , ...field } }) => (<LocalizationProvider dateAdapter={AdapterDayjs} >
-                                    <DatePicker label="Started On" 
-                                        inputFormat="MMM-YYYY"
-                                        views={['year', 'month']}
+                                render={({ field: { name, ...field } }) => (<LocalizationProvider dateAdapter={AdapterDayjs} >
+                                    <DatePicker label="Started On"
+                                        inputFormat="DD-MM-YYYY"
                                         value={startDate}
                                         onChange={(newValue) => { setStartDate(newValue); }}
                                         renderInput={(params) => <TextField
@@ -169,16 +168,14 @@ const WorkExp = () => {
                             />
                         </FormControl>
                     </Grid>
-
                     <Grid item>
                         <FormControl variant="standard" sx={{ width: 150 }}>
                             <Controller
                                 control={control}
                                 name="jobEnd"
                                 render={({ field: { name, ...field } }) => (<LocalizationProvider dateAdapter={AdapterDayjs} >
-                                    <DatePicker label="End On" 
-                                    inputFormat="MMM-YYYY"
-                                    views={['year', 'month']}
+                                    <DatePicker label="End On"
+                                        inputFormat="DD-MM-YYYY"
                                         value={endDate}
                                         onChange={(newValue) => { setEndDate(newValue); }}
                                         renderInput={(params) => <TextField

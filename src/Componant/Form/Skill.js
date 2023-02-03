@@ -86,7 +86,6 @@ const Skill = () => {
                                 render={({ field, formState: { errors } }) => (
                                     <TextField
                                         fullWidth
-                                        id="otherSkill"
                                         label="Mention hare your other key skill."
                                         variant="standard"
                                         {...field}

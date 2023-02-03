@@ -151,7 +151,8 @@ export default function Temp1() {
     <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, m: 1 }}>
       {images.map((image, i) => (
         <ImageButton
-          focusRipple variant="contained"
+          focusRipple 
+          variant="contained"
           key={image.url}
           style={{
             width: image.width,

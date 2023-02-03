@@ -7,11 +7,13 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import FormControl from '@mui/material/FormControl';
 import AddIcon from '@mui/icons-material/Add';
-import dayjs from 'dayjs';
+// import dayjs from 'dayjs';
 import { Controller, useFormContext } from "react-hook-form";
 
 const EduInfo = () => {
     const [startDate, setStartDate] = useState(null);
+
+    const [certificateDate, setCertificateDate] = useState(null);
 
     const { control, register } = useFormContext();
 
@@ -31,7 +33,6 @@ const EduInfo = () => {
                                 render={({ field, formState: { errors } }) => (
                                     <TextField
                                         fullWidth
-                                        id="qualification"
                                         label="Qualification"
                                         variant="standard"
                                         {...field}
@@ -49,7 +50,6 @@ const EduInfo = () => {
                                 render={({ field, formState: { errors } }) => (
                                     <TextField
                                         fullWidth
-                                        id="university"
                                         label="University / School"
                                         variant="standard"
                                         {...field}
@@ -70,7 +70,6 @@ const EduInfo = () => {
                                 render={({ field, formState: { errors } }) => (
                                     <TextField
                                         fullWidth
-                                        id="universityCity"
                                         label="City"
                                         variant="standard"
                                         {...field}
@@ -89,7 +88,6 @@ const EduInfo = () => {
                                 render={({ field, formState: { errors } }) => (
                                     <TextField
                                         fullWidth
-                                        id="universityState"
                                         label="State"
                                         variant="standard"
                                         {...field}
@@ -103,23 +101,46 @@ const EduInfo = () => {
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid container display="flex" direction="row" justifyContent="flex-end" alignItems="flex-end" p={2} gap={2}>
-                    <Grid item >
-                        <FormControl variant="standard" sx={{ width: "150px", minWidth: "100%" }} size="small" >
-                            <LocalizationProvider dateAdapter={AdapterDayjs} >
-                                <DatePicker label="Certificate Date" value={startDate}
-                                    views={['month', 'year']}
-                                    minDate={dayjs('2012-03-01')}
-                                    maxDate={dayjs('2023-06-01')}
-                                    onChange={(newValue) => { setStartDate(newValue); }}
-                                    renderInput={(params) => <TextField {...params} variant="standard" />} />
-                            </LocalizationProvider>
-
+                <Grid container direction="column" justifyContent="flex-end" alignItems="flex-end" p={2} gap={2}>
+                    <Grid item sm={6}>
+                        <FormControl variant="standard" sx={{ width: 150 }} >
+                            <Controller
+                                control={control}
+                                name="certificateDate"
+                                render={({ field }) => (
+                                    <LocalizationProvider dateAdapter={AdapterDayjs} >
+                                        <DatePicker
+                                            label="Certificate Date"
+                                            value={startDate}
+                                            inputFormat="DD-MM-YYYY"
+                                            inputRef={register('certificateDate')}
+                                            onChange={(newValue) => {
+                                                setStartDate(newValue);
+                                            }}
+                                            renderInput={(params) => <TextField
+                                                {...params}
+                                                {...field}
+                                                variant="standard" />} />
+                                    </LocalizationProvider>
+                                )}
+                            />
                         </FormControl>
                     </Grid>
-                    <Grid item >
-                        <FormControl variant="standard" sx={{ width: "150px", minWidth: "100%" }} size="small">
-                            <TextField fullWidth label="Grade/Percentage%" variant="standard" />
+                    <Grid item sm={6}>
+                        <FormControl variant="standard" sx={{ width: 150 }} >
+                            <Controller
+                                control={control}
+                                name="Grade"
+                                render={({ field, formState: { errors } }) => (
+                                    <TextField fullWidth
+                                        label="Grade/Percentage%"
+                                        variant="standard"
+                                        {...field}
+                                        inputRef={register('Grade')}
+                                        error={Boolean(errors.Grade)}
+                                        helperText={errors.Grade ? errors.Grade.message : " "}
+                                    />)}
+                            />
                         </FormControl>
                     </Grid>
                 </Grid>
@@ -144,7 +165,6 @@ const EduInfo = () => {
                                 render={({ field, formState: { errors } }) => (
                                     <TextField
                                         fullWidth
-                                        id="courseName"
                                         label="Course Name"
                                         variant="standard"
                                         {...field}
@@ -162,7 +182,6 @@ const EduInfo = () => {
                                 render={({ field, formState: { errors } }) => (
                                     <TextField
                                         fullWidth
-                                        id="courseBy"
                                         label="University / Institute"
                                         variant="standard"
                                         {...field}
@@ -179,11 +198,12 @@ const EduInfo = () => {
                     <Grid item >
                         <FormControl variant="standard" sx={{ width: "150px", minWidth: "100%" }} size="small" >
                             <LocalizationProvider dateAdapter={AdapterDayjs} >
-                                <DatePicker label="Certificate Date" value={startDate}
-                                    views={['month', 'year']}
-                                    minDate={dayjs('2012-03-01')}
-                                    maxDate={dayjs('2023-06-01')}
-                                    onChange={(newValue) => { setStartDate(newValue); }}
+                                <DatePicker
+                                    label="Certificate Date"
+                                    value={certificateDate}
+                                    inputFormat="DD-MM-YYYY"
+                                    name="certificateDate2"
+                                    onChange={(newValue) => { setCertificateDate(newValue); }}
                                     renderInput={(params) => <TextField {...params} variant="standard" />} />
                             </LocalizationProvider>
 
@@ -191,7 +211,19 @@ const EduInfo = () => {
                     </Grid>
                     <Grid item >
                         <FormControl variant="standard" sx={{ width: "150px", minWidth: "100%" }} size="small">
-                            <TextField fullWidth label="Grade" variant="standard" />
+                            <Controller
+                                control={control}
+                                name="Grade2"
+                                render={({ field, formState: { errors } }) => (
+                                    <TextField fullWidth
+                                        label="Grade/Percentage%"
+                                        variant="standard"
+                                        {...field}
+                                        inputRef={register('Grade2')}
+                                        error={Boolean(errors.Grade2)}
+                                        helperText={errors.Grade2 ? errors.Grade2.message : " "}
+                                    />)}
+                            />
                         </FormControl>
                     </Grid>
                 </Grid>

@@ -24,7 +24,7 @@ const FormMain = () => {
             lastName: "",
             email: "",
             mobile: "",
-            age: null,
+            dateOfBirth: null,
             address: "",
             city: "",
             state: "",

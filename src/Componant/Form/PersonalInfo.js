@@ -11,6 +11,8 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 // import dayjs from 'dayjs';
 import { Controller, useFormContext } from "react-hook-form";
 
@@ -151,7 +153,7 @@ const PersonalInfo = () => {
                             <Controller
                                 control={control}
                                 name="email"
-                                render={({ field, formState: { errors } }) => (
+                                render={({ field }) => (
                                     <TextField
                                         fullWidth
                                         label="Email"
@@ -173,10 +175,15 @@ const PersonalInfo = () => {
                                         variant="standard"
                                         inputRef={register('mobile')}
                                         {...field}
-                                        inputProps={{ type: 'number', placeholder: '+91-0000-000-000', min: "0", }}
+                                        inputProps={{ type: 'number', placeholder: '+91-0000-000-000',  min: "0", }}
                                         error={Boolean(errors.mobile)}
                                         helperText={errors.mobile ? errors.mobile.message : " "}
                                     />)}
+                            />
+                            <PhoneInput
+                                country={'us'}
+                                value={this.state.phone}
+                                onChange={phone => this.setState({ phone })}
                             />
                         </Grid>
                     </Grid>
@@ -192,7 +199,6 @@ const PersonalInfo = () => {
                                         label="Address"
                                         variant="standard"
                                         {...field}
-                                        inputRef={register('address')}
                                     />)}
                             />
                         </Box>
@@ -229,7 +235,7 @@ const PersonalInfo = () => {
                                         inputRef={register('state')}
                                         {...field}
                                         error={Boolean(errors.state)}
-                                        helperText={errors.city ? errors.state.message : " "}
+                                        helperText={errors.state ? errors.state.message : " "}
                                     />)}
                             />
                         </Grid>
@@ -264,7 +270,7 @@ const PersonalInfo = () => {
                                         {...field}
                                         inputRef={register('country')}
                                         error={Boolean(errors.country)}
-                                        helperText={errors.city ? errors.country.message : " "}
+                                        helperText={errors.country ? errors.country.message : " "}
                                     />)}
                             />
                         </Grid>
@@ -274,20 +280,19 @@ const PersonalInfo = () => {
                             <FormControl variant="standard" sx={{ width: 150 }} >
                                 <Controller
                                     control={control}
-                                    name="age"
-                                    render={({ field }) => (
+                                    name="dateOfBirth"
+                                    render={({ field: { onChange } }) => (
                                         <LocalizationProvider dateAdapter={AdapterDayjs} >
                                             <DatePicker
                                                 label="DOB"
                                                 value={dob}
                                                 inputFormat="DD-MM-YYYY"
-                                                inputRef={register('age')}
-                                                onChange={(newValue) => { setDob(newValue) }}
+                                                onChange={(newValue) => { setDob(newValue); onChange(newValue) }}
                                                 renderInput={(params) =>
                                                     <TextField
                                                         {...params}
-                                                        {...field}
-                                                        variant="standard" />} />
+                                                        variant="standard" />}
+                                            />
                                         </LocalizationProvider>
                                     )}
                                 />

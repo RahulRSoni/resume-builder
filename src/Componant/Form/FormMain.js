@@ -5,15 +5,12 @@ import { useState } from "react"
 import PersonalInfo from "./PersonalInfo"
 import WorkExp from "./WorkEx"
 import EduInfo from "./EduInfo"
-import Skill from "./Skill"
+import SkillNLanguages from "./SkillNLanguages"
 import OtherInfo from "./OtherInfo"
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 import { FormProvider, useForm } from 'react-hook-form'
-// import { yupResolver } from '@hookform/resolvers/yup';
-// import * as Yup from "yup";
-
 
 const FormMain = () => {
 
@@ -42,21 +39,34 @@ const FormMain = () => {
                 jobStarted: null,
                 jobEnd: null
             }],
-            qualification: "",
-            university: "",
-            universityCity: "",
-            universityState: "",
-            certificateDate: null,
-            grade: "",
-            courseName: "",
-            courseBy: "",
-            certificateDate2: "",
-            grade2: "",
-            keySkill: "",
-            level: "",
-            otherSkill: "",
-            language: "",
 
+            qualificationDetails: [{
+                qualification: "",
+                university: "",
+                universityCity: "",
+                universityState: "",
+                certificateDate: null,
+                grade: ""
+            }],
+
+            courseDetails: [{
+                courseName: "",
+                courseBy: "",
+                certificateDate2: "",
+                grade2: "",
+            }],
+
+
+            keySkill: [{
+                skill: "",
+                level: ""
+            }],
+
+            language:[{
+                languageName: "",
+                level:""
+            }]
+            
         }
     });
 
@@ -103,7 +113,7 @@ const FormMain = () => {
                             <Tab label="Personal Information" value="1" sx={{ textTransform: "capitalize" }} />
                             <Tab label="Work Experience" value="2" sx={{ textTransform: "capitalize" }} />
                             <Tab label="Education" value="3" sx={{ textTransform: "capitalize" }} />
-                            <Tab label="Key Skills" value="4" sx={{ textTransform: "capitalize" }} />
+                            <Tab label="Skills & Languages" value="4" sx={{ textTransform: "capitalize" }} />
                             <Tab label="Other Information" value="5" sx={{ textTransform: "capitalize" }} />
                         </TabList>
                     </Box>
@@ -116,7 +126,7 @@ const FormMain = () => {
                                     <TabPanel value="1"><PersonalInfo /></TabPanel>
                                     <TabPanel value="2"><WorkExp /></TabPanel>
                                     <TabPanel value="3"><EduInfo /></TabPanel>
-                                    <TabPanel value="4"><Skill /></TabPanel>
+                                    <TabPanel value="4"><SkillNLanguages /></TabPanel>
                                     <TabPanel value="5"><OtherInfo /></TabPanel>
                                 </form></FormProvider>
                             </Box>

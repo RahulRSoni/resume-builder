@@ -59,9 +59,9 @@ const PersonalInfo = () => {
 
     return (
 
-        <FormControl>
+        <>
             <Grid container >
-                <Box sx={{ width: "620px", maxWidth: '100%', p: 2 }}>
+                <Box sx={{ width: "650px", maxWidth: '100%', p: 2 }}>
                     <Typography variant="h5">Personal Information</Typography>
                 </Box>
                 <Grid container display="flex" direction="column" justifyContent="flex-start" alignItems="center" item sm="auto" height="215px">
@@ -109,7 +109,7 @@ const PersonalInfo = () => {
                     </Grid>
                 </Grid>
 
-                <Grid container px={2} gap={2}>
+                <Grid container px={2}>
                     <Grid container item display="flex" direction="row" spacing={2}>
                         <Grid item sm={6}>
                             <Controller
@@ -187,8 +187,8 @@ const PersonalInfo = () => {
                         </Grid>
                     </Grid>
 
-                    <Grid item >
-                        <Box sx={{ width: "620px", maxWidth: '100%', }} >
+                    <Grid container item pb={3}>
+                        <Grid item sx={{ width: "620px", maxWidth: '100%', maxHeight: "100%" }}>
                             <Controller
                                 control={control}
                                 name="address"
@@ -200,10 +200,9 @@ const PersonalInfo = () => {
                                         {...field}
                                     />)}
                             />
-                        </Box>
+                        </Grid>
                     </Grid>
-
-                    <Grid container item display="flex" direction="row" spacing={2} >
+                    <Grid container item display="flex" direction="row" spacing={2}>
                         <Grid item sm={6}>
                             <Controller
                                 control={control}
@@ -337,7 +336,7 @@ const PersonalInfo = () => {
                     </Grid>
                 </Grid>
             </Grid>
-        </FormControl >
+        </>
     )
 }
 

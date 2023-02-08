@@ -11,9 +11,8 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import PhoneInput from 'react-phone-input-2'
-import 'react-phone-input-2/lib/style.css'
-// import dayjs from 'dayjs';
+import InputAdornment from '@mui/material/InputAdornment';
+
 import { Controller, useFormContext } from "react-hook-form";
 
 const PersonalInfo = () => {
@@ -171,19 +170,19 @@ const PersonalInfo = () => {
                                 render={({ field, formState: { errors } }) => (
                                     <TextField
                                         fullWidth
+                                        id="outlined-start-adornment"
                                         label="Mobile or Phone"
                                         variant="standard"
                                         inputRef={register('mobile')}
                                         {...field}
-                                        inputProps={{ type: 'number', placeholder: '+91-0000-000-000',  min: "0", }}
+                                        InputProps={{
+                                            startAdornment: <InputAdornment position="start">+91</InputAdornment>,
+                                            type: 'number',
+                                            placeholder: '0000000000'
+                                        }}
                                         error={Boolean(errors.mobile)}
                                         helperText={errors.mobile ? errors.mobile.message : " "}
                                     />)}
-                            />
-                            <PhoneInput
-                                country={'us'}
-                                value={this.state.phone}
-                                onChange={phone => this.setState({ phone })}
                             />
                         </Grid>
                     </Grid>
@@ -277,11 +276,11 @@ const PersonalInfo = () => {
                     </Grid>
                     <Grid container direction="row" justifyContent="space-between" alignItems="flex-end">
                         <Grid item>
-                            <FormControl variant="standard" sx={{ width: 150 }} >
+                            <Box sx={{ width: 150 }} >
                                 <Controller
                                     control={control}
                                     name="dateOfBirth"
-                                    render={({ field: { onChange } }) => (
+                                    render={({ field: { onChange, restField } }) => (
                                         <LocalizationProvider dateAdapter={AdapterDayjs} >
                                             <DatePicker
                                                 label="DOB"
@@ -291,12 +290,13 @@ const PersonalInfo = () => {
                                                 renderInput={(params) =>
                                                     <TextField
                                                         {...params}
+                                                        {...restField}
                                                         variant="standard" />}
                                             />
                                         </LocalizationProvider>
                                     )}
                                 />
-                            </FormControl>
+                            </Box>
                         </Grid>
                         <Grid item >
                             <FormControl variant="standard" sx={{ minWidth: 150 }}>
@@ -323,7 +323,7 @@ const PersonalInfo = () => {
                                     control={control}
                                     name="maritalStatus"
                                     defaultValues={{}}
-                                    render={({ field, formState: { errors } }) => (<Select labelId="status-selection" {...field} inputRef={register('maritalStatus')}>
+                                    render={({ field }) => (<Select labelId="status-selection" {...field} inputRef={register('maritalStatus')}>
                                         {maritalStatus.map((status) => (
                                             <MenuItem key={status.value} value={status.value}>
                                                 {status.text}

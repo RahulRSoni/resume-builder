@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from "react";
-import { Box, Grid, Typography, Button } from '@mui/material';
+import { Box, Grid, Typography, IconButton, Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -58,9 +58,9 @@ const WorkExp = () => {
                                 {`${index + 1}.`}
                             </Grid>
                             <Grid item >
-                                <Button variant="text" startIcon={<ClearOutlinedIcon color="primary" />} onClick={() => remove(index)}>
-                                    Remove
-                                </Button>
+                                <IconButton color="primary" aria-label="remove from cart" onClick={() => remove(index)}>
+                                    <ClearOutlinedIcon />
+                                </IconButton>
                             </Grid>
                         </Grid>
                         <Grid container item display="flex" direction="row" spacing={2} >
@@ -68,17 +68,15 @@ const WorkExp = () => {
                                 <Controller
                                     control={control}
                                     name={`companyDetails[${index}].workedProfile`}
-                                    rules={{ required: "Please fill your previous job roll" }}
                                     render={({ field, formState: { errors } }) => (
+                                        
                                         <TextField
                                             fullWidth
                                             id="workedProfile"
                                             label="Job Title"
                                             variant="standard"
                                             {...field}
-                                            inputRef={register('workedProfile')}
-                                            error={Boolean(errors.workedProfile)}
-                                            helperText={errors.workedProfile ? errors.workedProfile.message : " "}
+                                            inputRef={register(`companyDetails[${index}].workedProfile`)}
                                         />)}
                                 />
                             </Grid>
@@ -87,16 +85,16 @@ const WorkExp = () => {
                                     control={control}
                                     name={`companyDetails[${index}].companyName`}
                                     rules={{ required: "Please fill your previous employer" }}
-                                    render={({ field, formState: { errors } }) => (
+                                    render={({ field:{name, restField}, formState: { errors } }) => (
                                         <TextField
                                             fullWidth
                                             id="companyName"
                                             label="Organization / Employer"
                                             variant="standard"
-                                            {...field}
-                                            inputRef={register('companyName')}
-                                            error={Boolean(errors.companyName)}
-                                            helperText={errors.companyName ? errors.companyName.message : " "}
+                                            {...restField}
+                                            inputRef={register(`companyDetails[${index}].companyName`)}
+                                            error={Boolean(errors.name)}
+                                            helperText={errors.name ? errors.name.message : " "}
                                         />)}
                                 />
                             </Grid>

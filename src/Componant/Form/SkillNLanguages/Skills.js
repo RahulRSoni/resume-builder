@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box, Grid, Typography, Button } from '@mui/material';
+import { Box, Grid, Typography, Button, IconButton } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import AddIcon from '@mui/icons-material/Add';
 import Slider from '@mui/material/Slider';
@@ -11,9 +11,6 @@ const Skill = () => {
 
     const { control, register } = useFormContext();
 
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
 
     function valueLabelFormat(newValue) {
         const units = ['Novice', 'Beginner', 'Skillful', 'Experienced', 'Expert'];
@@ -31,8 +28,9 @@ const Skill = () => {
             </Box>
             {fields.map((Item, index) => {
                 return (
-                    <Grid container item display="flex" direction="row" spacing={2} key={Item.id}>
-                        <Grid item sm={6}>
+                    <Grid container item display="flex" direction="row" justifyContent="space-around" alignItems="center" spacing={2} key={Item.id} sx={{ borderLeft: '6px solid red' }}>
+                        <Grid item sx={{ width: '1%' }} >{`${index + 1}.`}</Grid>
+                        <Grid item sx={{ width: '44%' }}>
                             <Controller
                                 control={control}
                                 name={`keySkill[${index}].skill`}
@@ -49,27 +47,31 @@ const Skill = () => {
                                     />)}
                             />
                         </Grid>
-                        <Grid item sm={6}>
-                            <Box sx={{ width: "100%" }}>
-                                <Typography id="non-linear-slider" gutterBottom>
-                                    Level: {valueLabelFormat(value)}
-                                </Typography>
-                                <Slider
-                                    value={value}
-                                    min={1}
-                                    step={1}
-                                    max={5}
-                                    getAriaValueText={valueLabelFormat}
-                                    valueLabelFormat={valueLabelFormat}
-                                    onChange={handleChange}
-                                    aria-labelledby="non-linear-slider"
-                                />
-                            </Box>
+                        <Grid item sx={{ width: '45%' }}>
+                            <Typography gutterBottom>
+                                Level: {valueLabelFormat(value)}
+                            </Typography>
+                            <Controller
+                                control={control}
+                                name={`keySkill[${index}].level`}
+                                render={({ field: { onChange, restField } }) => (
+                                    <Slider
+                                        value={value}
+                                        min={1}
+                                        step={1}
+                                        max={5}
+                                        {...restField}
+                                        // getAriaValueText={valueLabelFormat}
+                                        // valueLabelFormat={valueLabelFormat}
+                                        onChange={(event, newValue) => { setValue(newValue); onChange(newValue) }}
+                                    />
+                                )}
+                            />
                         </Grid>
                         <Grid item >
-                            <Button variant="text" startIcon={<ClearOutlinedIcon color="primary" />} onClick={() => remove(index)}>
-                                Remove
-                            </Button>
+                            <IconButton color="primary" aria-label="remove from cart" onClick={() => remove(index)}>
+                                <ClearOutlinedIcon />
+                            </IconButton>
                         </Grid>
                     </Grid>
                 )

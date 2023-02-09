@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Grid, Typography, Button } from '@mui/material';
+import { Box, Grid, Typography, Button, IconButton } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import AddIcon from '@mui/icons-material/Add';
 import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
@@ -9,11 +9,16 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import { Controller, useFormContext } from "react-hook-form";
+import { Controller, useFormContext, useFieldArray } from "react-hook-form";
+import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 
 const OtherInfo = () => {
 
     const { control, register } = useFormContext();
+
+    const { fields, append, remove } = useFieldArray({
+        name: "references",
+    });
 
     return (
         <React.Fragment >
@@ -141,55 +146,13 @@ const OtherInfo = () => {
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid container px={2} gap={2}>
-                    <Grid container item display="flex" direction="row" spacing={2}>
-                        <Grid item sm={6}>
-
-                            <Controller
-                                control={control}
-                                name="otherPlatform"
-                                render={({ field, formState: { errors } }) => (
-                                    <TextField
-                                        fullWidth
-                                        id="otherPlatform"
-                                        label="Other Platform Name"
-                                        variant="standard"
-                                        {...field}
-                                        inputRef={register('otherPlatform')}
-                                    />)}
-                            />
-
-                        </Grid>
-                        <Grid item sm={6}>
-
-                            <Controller
-                                control={control}
-                                name="otherPlatformLink"
-                                render={({ field, formState: { errors } }) => (
-                                    <TextField
-                                        fullWidth
-                                        id="otherPlatformLink"
-                                        label="Paste Your Handle Link or url"
-                                        variant="standard"
-                                        {...field}
-                                        inputRef={register('otherPlatformLink')}
-                                    />)}
-                            />
-
-                        </Grid>
-                    </Grid>
-                </Grid>
-            </Grid>
-            <Grid container display="flex" justifyContent="flex-end" mt={4}>
-                <Button variant="text" startIcon={<AddIcon color="primary" />}>
-                    Add more Platforms
-                </Button>
             </Grid>
 
             <Grid container >
                 <Box sx={{ width: "620px", maxWidth: '100%', p: 2 }}>
                     <Typography variant="h5" >Interest / Hobbies</Typography>
                 </Box>
+
                 <Grid container px={2} gap={2}>
                     <Grid container item display="flex" direction="row">
                         <Box sx={{ width: "620px", maxWidth: '100%', }} >
@@ -211,98 +174,105 @@ const OtherInfo = () => {
                     </Grid>
                 </Grid>
             </Grid>
-            <Grid container display="flex" justifyContent="flex-end" mt={4}>
-                <Button variant="text" startIcon={<AddIcon color="primary" />}>
-                    Add more Hobbies
-                </Button>
-            </Grid>
-
-
-            <Grid container >
-                <Box sx={{ width: "620px", maxWidth: '100%', p: 2 }}>
-                    <Typography variant="h5" >References</Typography>
-                </Box>
-                <Grid container px={2} gap={2}>
-
-                    <Grid container item display="flex" direction="row" spacing={2}>
-                        <Grid item sm={6}>
-
-                            <Controller
-                                control={control}
-                                name="RefName"
-                                render={({ field, formState: { errors } }) => (
-                                    <TextField
-                                        fullWidth
-                                        id="RefName"
-                                        label="Referent Person"
-                                        variant="standard"
-                                        {...field}
-                                        inputRef={register('RefName')}
-                                    />)}
-                            />
-
+            <Box sx={{ width: "620px", maxWidth: '100%', p: 2 }}>
+                <Typography variant="h5" >References</Typography>
+            </Box>
+            {fields.map((Item, index) => {
+                return (
+                    <Grid container p={1} key={Item.id}>
+                        <Grid container item display="flex" direction="row" justifyContent="space-between" alignItems="center" sx={{ borderBottom: "1px solid #cccccc", mb: 2, pl: 1, borderLeft: '6px solid red' }}>
+                            <Grid item>
+                                {`${index + 1}.`}
+                            </Grid>
+                            <Grid item >
+                                <IconButton color="primary" aria-label="remove from cart" onClick={() => remove(index)}>
+                                    <ClearOutlinedIcon />
+                                </IconButton>
+                            </Grid>
                         </Grid>
-                        <Grid item sm={6}>
+                        <Grid container item display="flex" direction="row" spacing={2}>
 
-                            <Controller
-                                control={control}
-                                name="RefDetail"
-                                render={({ field, formState: { errors } }) => (
-                                    <TextField
-                                        fullWidth
-                                        id="RefDetail"
-                                        label="Organization Name (Job Profile)"
-                                        variant="standard"
-                                        {...field}
-                                        inputRef={register('RefDetail')}
-                                    />)}
-                            />
-                        </Grid>
-                    </Grid>
-                    <Grid container display="flex" direction="column" justifyContent="center" alignItems="flex-end" spacing={2}>
-                        <Grid item sm={6}>
-                            <Box sx={{ width: "280px", maxWidth: '100%' }}>
-
+                            <Grid item sm={6}>
                                 <Controller
                                     control={control}
-                                    name="RefEmail"
+                                    name={`references[${index}].RefName`}
                                     render={({ field, formState: { errors } }) => (
                                         <TextField
                                             fullWidth
-                                            id="RefEmail"
-                                            label="Email"
+                                            id="RefName"
+                                            label="Referent Person"
                                             variant="standard"
                                             {...field}
-                                            inputRef={register('RefEmail')}
+                                            inputRef={register('RefName')}
                                         />)}
                                 />
-                            </Box >
-                        </Grid>
-                        <Grid item sm={6}>
-                            <Box sx={{ width: "280px", maxWidth: '100%' }}>
-
+                            </Grid>
+                            <Grid item sm={6}>
                                 <Controller
                                     control={control}
-                                    name="RefMobile"
+                                    name={`references[${index}].RefDetail`}
                                     render={({ field, formState: { errors } }) => (
                                         <TextField
                                             fullWidth
-                                            id="RefMobile"
-                                            label="Mobile or Phone"
-                                            inputProps={{ type: 'number', pattern: '[0-9]*', step: "none" }}
+                                            id="RefDetail"
+                                            label="Organization Name (Job Profile)"
                                             variant="standard"
                                             {...field}
-                                            inputRef={register('RefMobile')}
+                                            inputRef={register('RefDetail')}
                                         />)}
                                 />
-                            </Box >
+                            </Grid>
+                        </Grid>
+                        <Grid container display="flex" direction="column" justifyContent="center" alignItems="flex-end" spacing={2}>
+                            <Grid item sm={6}>
+                                <Box sx={{ width: "280px", maxWidth: '100%' }}>
+                                    <Controller
+                                        control={control}
+                                        name={`references[${index}].RefEmail`}
+                                        render={({ field, formState: { errors } }) => (
+                                            <TextField
+                                                fullWidth
+                                                id="RefEmail"
+                                                label="Email"
+                                                variant="standard"
+                                                {...field}
+                                                inputRef={register('RefEmail')}
+                                            />)}
+                                    />
+                                </Box >
+                            </Grid>
+                            <Grid item sm={6}>
+                                <Box sx={{ width: "280px", maxWidth: '100%' }}>
+                                    <Controller
+                                        control={control}
+                                        name={`references[${index}].RefMobile`}
+                                        render={({ field, formState: { errors } }) => (
+                                            <TextField
+                                                fullWidth
+                                                id="RefMobile"
+                                                label="Mobile or Phone"
+                                                inputProps={{ type: 'number', pattern: '[0-9]*', step: "none" }}
+                                                variant="standard"
+                                                {...field}
+                                                inputRef={register('RefMobile')}
+                                            />)}
+                                    />
+                                </Box >
+                            </Grid>
                         </Grid>
                     </Grid>
-                </Grid>
-            </Grid>
+                )
+            })}
             <Grid container display="flex" justifyContent="flex-end" mt={4}>
-                <Button variant="text" startIcon={<AddIcon color="primary" />}>
-                    Add more Hobbies
+                <Button variant="text" startIcon={<AddIcon color="primary" />} onClick={() => {
+                    append({
+                        refName: "",
+                        RefDetail: '',
+                        RefEmail: '',
+                        RefMobile: '',
+                    });
+                }}>
+                    Add more person
                 </Button>
             </Grid>
 

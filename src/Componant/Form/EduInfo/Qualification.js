@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from "react";
-import { Box, Grid, Typography, Button } from '@mui/material';
+import { Box, Grid, Typography, Button, IconButton } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -34,9 +34,9 @@ const Qualification = () => {
                                 {`${index + 1}.`}
                             </Grid>
                             <Grid item >
-                                <Button variant="text" startIcon={<ClearOutlinedIcon color="primary" />} onClick={() => remove(index)}>
-                                    Remove
-                                </Button>
+                                <IconButton color="primary" aria-label="remove from cart" onClick={() => remove(index)}>
+                                    <ClearOutlinedIcon />
+                                </IconButton>
                             </Grid>
                         </Grid>
                         <Grid container item display="flex" direction="row" spacing={2}>

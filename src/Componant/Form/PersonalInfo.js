@@ -12,7 +12,6 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import InputAdornment from '@mui/material/InputAdornment';
-
 import { Controller, useFormContext } from "react-hook-form";
 
 const PersonalInfo = () => {
@@ -25,24 +24,11 @@ const PersonalInfo = () => {
 
     const [imageUrl, setImageUrl] = useState(null);
 
-    // const [gender, setGender] = React.useState('');
-
-    // const handleChange = (event) => {
-    //     setGender(event.target.value);
-    // };
-
-    // const [marital, setMarital] = React.useState('');
-
-    // const handleChangeMaterial = (event) => {
-    //     setMarital(event.target.value);
-    // };
-
     useEffect(() => {
         if (selectedImage) {
             setImageUrl(URL.createObjectURL(selectedImage));
         }
     }, [selectedImage]);
-
 
     const personGender = [
         { value: "Male", text: "Male" },
@@ -58,13 +44,12 @@ const PersonalInfo = () => {
     ];
 
     return (
-
         <>
             <Grid container >
                 <Box sx={{ width: "650px", maxWidth: '100%', p: 2 }}>
                     <Typography variant="h5">Personal Information</Typography>
                 </Box>
-                <Grid container display="flex" direction="column" justifyContent="flex-start" alignItems="center" item sm="auto" height="215px">
+                <Grid container item display="flex" direction="column" justifyContent="flex-start" alignItems="center" sm="auto" height="215px">
                     <Grid item>
                         <Avatar src="/broken-image.jpg" sizes="large" sx={{ width: 150, height: 150, }}>
                             {imageUrl && selectedImage && (
@@ -249,7 +234,6 @@ const PersonalInfo = () => {
                                         fullWidth
                                         label="Postal Code"
                                         variant="standard"
-                                        inputRef={register('pinCode')}
                                         {...field}
                                         inputProps={{ type: 'number', pattern: '[0-9]*', step: "none" }}
                                     />)}
@@ -303,7 +287,7 @@ const PersonalInfo = () => {
                                 <Controller
                                     control={control}
                                     name="gender"
-                                    render={({ field }) => (<Select labelId="gender-selection"  {...field} inputRef={register('gender')}>
+                                    render={({ field }) => (<Select labelId="gender-selection"  {...field}>
                                         {personGender.map((person) => (
                                             <MenuItem key={person.value} value={person.value}>
                                                 {person.text}
@@ -322,7 +306,7 @@ const PersonalInfo = () => {
                                     control={control}
                                     name="maritalStatus"
                                     defaultValues={{}}
-                                    render={({ field }) => (<Select labelId="status-selection" {...field} inputRef={register('maritalStatus')}>
+                                    render={({ field }) => (<Select labelId="status-selection" {...field}>
                                         {maritalStatus.map((status) => (
                                             <MenuItem key={status.value} value={status.value}>
                                                 {status.text}

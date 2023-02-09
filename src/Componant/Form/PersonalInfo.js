@@ -18,8 +18,6 @@ const PersonalInfo = () => {
 
     const { control, register } = useFormContext();
 
-    const [dob, setDob] = useState(null);
-
     const [selectedImage, setSelectedImage] = useState(null);
 
     const [imageUrl, setImageUrl] = useState(null);
@@ -44,7 +42,7 @@ const PersonalInfo = () => {
     ];
 
     return (
-        <>
+        <React.Fragment>
             <Grid container >
                 <Box sx={{ width: "650px", maxWidth: '100%', p: 2 }}>
                     <Typography variant="h5">Personal Information</Typography>
@@ -137,13 +135,16 @@ const PersonalInfo = () => {
                             <Controller
                                 control={control}
                                 name="email"
-                                render={({ field }) => (
+                                rules={{ required: "Please write your Email address" }}
+                                render={({ field, formState: { errors } }) => (
                                     <TextField
                                         fullWidth
                                         label="Email"
-                                        inputRef={register('email')}
+                                        inputRef={register('email', { pattern: { value: /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/, message: "Please write correct Email address" } })}
                                         variant="standard"
                                         {...field}
+                                        error={Boolean(errors.email)}
+                                        helperText={errors.email ? errors.email.message : " "}
                                     />)}
                             />
                         </Grid>
@@ -158,7 +159,7 @@ const PersonalInfo = () => {
                                         id="outlined-start-adornment"
                                         label="Mobile or Phone"
                                         variant="standard"
-                                        inputRef={register('mobile')}
+                                        inputRef={register('mobile', { valueAsNumber: true, minLength: { value: 10, message: "Mobile number must be have 10 digit." }, maxLength: { value: 10, message: "Mobile number must be have 10 digit." } })}
                                         {...field}
                                         InputProps={{
                                             startAdornment: <InputAdornment position="start">+91</InputAdornment>,
@@ -229,13 +230,16 @@ const PersonalInfo = () => {
                             <Controller
                                 control={control}
                                 name="pinCode"
-                                render={({ field }) => (
+                                render={({ field, formState: { errors } }) => (
                                     <TextField
                                         fullWidth
                                         label="Postal Code"
                                         variant="standard"
                                         {...field}
-                                        inputProps={{ type: 'number', pattern: '[0-9]*', step: "none" }}
+                                        inputRef={register('pinCode', { valueAsNumber: true, minLength: { value: 6, message: "Pin-code have 6 digit." }, maxLength: { value: 6, message: "Pin-code have 6 digit." } })}
+                                        inputProps={{ type: 'number', placeholder: '000000' }}
+                                        error={Boolean(errors.pinCode)}
+                                        helperText={errors.pinCode ? errors.pinCode.message : " "}
                                     />)}
                             />
                         </Grid>
@@ -263,13 +267,13 @@ const PersonalInfo = () => {
                                 <Controller
                                     control={control}
                                     name="dateOfBirth"
-                                    render={({ field: { onChange, restField } }) => (
+                                    render={({ field: { onChange, value, restField } }) => (
                                         <LocalizationProvider dateAdapter={AdapterDayjs} >
                                             <DatePicker
                                                 label="DOB"
-                                                value={dob}
+                                                value={value}
                                                 inputFormat="DD-MM-YYYY"
-                                                onChange={(newValue) => { setDob(newValue); onChange(newValue) }}
+                                                onChange={(newValue) => { onChange(newValue) }}
                                                 renderInput={(params) =>
                                                     <TextField
                                                         {...params}
@@ -320,7 +324,7 @@ const PersonalInfo = () => {
                     </Grid>
                 </Grid>
             </Grid>
-        </>
+        </React.Fragment>
     )
 }
 

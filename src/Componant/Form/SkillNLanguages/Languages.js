@@ -5,10 +5,9 @@ import AddIcon from '@mui/icons-material/Add';
 import { Controller, useFormContext, useFieldArray } from "react-hook-form";
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
-// import NativeSelect from '@mui/material/NativeSelect';
 import MenuItem from '@mui/material/MenuItem';
-import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 import Select from '@mui/material/Select';
+import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 
 
 const Languages = () => {
@@ -18,11 +17,11 @@ const Languages = () => {
         name: "language",
     });
 
-    const maritalStatus = [
-        { value: "Single", text: "Single" },
-        { value: "Married", text: "Married" },
-        { value: "Divorced", text: "Divorced" },
-        { value: "Widowed", text: "Widowed" },
+    const levels = [
+        { value: "Working-Knowledge", text: "Working Knowledge" },
+        { value: "Good-Working-Knowledge", text: "Good Working Knowledge" },
+        { value: "Native-Speaker", text: "Native Speaker" },
+        { value: "Highly-Proficient", text: "Highly Proficient" },
     ];
     return (
         <React.Fragment>
@@ -59,8 +58,8 @@ const Languages = () => {
                                         control={control}
                                         name={`language[${index}].level`}
                                         defaultValues={{}}
-                                        render={({ field }) => (<Select labelId="status-selection" {...field} inputRef={register('maritalStatus')}>
-                                            {maritalStatus.map((status) => (
+                                        render={({ field }) => (<Select labelId="status-selection" {...field} inputRef={register(`language[${index}].level`)}>
+                                            {levels.map((status) => (
                                                 <MenuItem key={status.value} value={status.value}>
                                                     {status.text}
                                                 </MenuItem>

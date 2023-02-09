@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from "react";
+// import { useState } from "react";
 import { Box, Grid, Typography, IconButton, Button } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -12,10 +12,6 @@ import { Controller, useFormContext, useFieldArray } from "react-hook-form";
 const WorkExp = () => {
 
     const { control, register } = useFormContext();
-
-    const [startDate, setStartDate] = useState(null);
-
-    const [endDate, setEndDate] = useState(null);
 
     const { fields, append, remove } = useFieldArray({
         name: "companyDetails"
@@ -52,7 +48,7 @@ const WorkExp = () => {
             </Box>
             {fields.map((Item, index) => {
                 return (
-                    <Grid container p={2} key={Item.id}>
+                    <Grid container p={2} gap={1} key={Item.id}>
                         <Grid container item display="flex" direction="row" justifyContent="space-between" alignItems="center" sx={{ borderBottom: "1px solid #cccccc", mb: 2, pl: 1, borderLeft: '6px solid red' }}>
                             <Grid item>
                                 {`${index + 1}.`}
@@ -68,15 +64,13 @@ const WorkExp = () => {
                                 <Controller
                                     control={control}
                                     name={`companyDetails[${index}].workedProfile`}
-                                    render={({ field, formState: { errors } }) => (
-                                        
+                                    render={({ field }) => (
                                         <TextField
                                             fullWidth
                                             id="workedProfile"
                                             label="Job Title"
                                             variant="standard"
                                             {...field}
-                                            inputRef={register(`companyDetails[${index}].workedProfile`)}
                                         />)}
                                 />
                             </Grid>
@@ -85,16 +79,13 @@ const WorkExp = () => {
                                     control={control}
                                     name={`companyDetails[${index}].companyName`}
                                     rules={{ required: "Please fill your previous employer" }}
-                                    render={({ field:{name, restField}, formState: { errors } }) => (
+                                    render={({ field }) => (
                                         <TextField
                                             fullWidth
                                             id="companyName"
                                             label="Organization / Employer"
                                             variant="standard"
-                                            {...restField}
-                                            inputRef={register(`companyDetails[${index}].companyName`)}
-                                            error={Boolean(errors.name)}
-                                            helperText={errors.name ? errors.name.message : " "}
+                                            {...field}
                                         />)}
                                 />
                             </Grid>
@@ -106,16 +97,13 @@ const WorkExp = () => {
                                     control={control}
                                     name={`companyDetails[${index}].companyCity`}
                                     rules={{ required: "Please fill your previous employment city" }}
-                                    render={({ field, formState: { errors } }) => (
+                                    render={({ field}) => (
                                         <TextField
                                             fullWidth
                                             id="companyCity"
                                             label="City"
                                             variant="standard"
                                             {...field}
-                                            inputRef={register('companyCity')}
-                                            error={Boolean(errors.companyCity)}
-                                            helperText={errors.companyCity ? errors.companyCity.message : " "}
                                         />)}
                                 />
                             </Grid>
@@ -124,16 +112,13 @@ const WorkExp = () => {
                                     control={control}
                                     name={`companyDetails[${index}].companyState`}
                                     rules={{ required: "Please fill your previous employment state" }}
-                                    render={({ field, formState: { errors } }) => (
+                                    render={({ field }) => (
                                         <TextField
                                             fullWidth
                                             id="companyState"
                                             label="State"
                                             variant="standard"
                                             {...field}
-                                            inputRef={register('companyState')}
-                                            error={Boolean(errors.companyState)}
-                                            helperText={errors.companyState ? errors.companyState.message : " "}
                                         />)}
                                 />
                             </Grid>
@@ -144,7 +129,7 @@ const WorkExp = () => {
                                     control={control}
                                     name={`companyDetails[${index}].jobSummary`}
                                     rules={{ required: "Please mention your job roll above as on your previous job profile" }}
-                                    render={({ field, formState: { errors } }) => (
+                                    render={({ field }) => (
                                         <TextField
                                             fullWidth
                                             id="jobSummary"
@@ -152,9 +137,6 @@ const WorkExp = () => {
                                             variant="standard"
                                             multiline rows={3}
                                             {...field}
-                                            inputRef={register('jobSummary')}
-                                            error={Boolean(errors.jobSummary)}
-                                            helperText={errors.jobSummary ? errors.jobSummary.message : " "}
                                         />)}
                                 />
                             </Box>
@@ -164,14 +146,15 @@ const WorkExp = () => {
                                 <Controller
                                     control={control}
                                     name={`companyDetails[${index}].jobStarted`}
-                                    render={({ field: { onChange } }) => (
+                                    render={({ field: { onChange, value, restField } }) => (
                                         <LocalizationProvider dateAdapter={AdapterDayjs} >
                                             <DatePicker label="Started On"
                                                 inputFormat="DD-MM-YYYY"
-                                                value={startDate}
-                                                onChange={(newValue) => { setStartDate(newValue); onChange(newValue) }}
+                                                value={value}
+                                                onChange={(newValue) => { onChange(newValue) }}
                                                 renderInput={(params) => <TextField
                                                     {...params}
+                                                    {...restField}
                                                     variant="standard" />} />
                                         </LocalizationProvider>
                                     )}
@@ -182,12 +165,12 @@ const WorkExp = () => {
                                 <Controller
                                     control={control}
                                     name={`companyDetails[${index}].jobEnd`}
-                                    render={({ field: { onChange, restField } }) => (
+                                    render={({ field: { onChange,value, restField } }) => (
                                         <LocalizationProvider dateAdapter={AdapterDayjs} >
                                             <DatePicker label="End On"
                                                 inputFormat="DD-MM-YYYY"
-                                                value={endDate}
-                                                onChange={(newValue) => { setEndDate(newValue); onChange(newValue) }}
+                                                value={value}
+                                                onChange={(newValue) => { onChange(newValue) }}
                                                 renderInput={(params) => <TextField
                                                     {...params}
                                                     {...restField}

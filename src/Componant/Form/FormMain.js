@@ -52,7 +52,7 @@ const FormMain = () => {
             courseDetails: [{
                 courseName: "",
                 courseBy: "",
-                certificateDate2: "",
+                certificateDate2: null,
                 grade2: "",
             }],
 
@@ -116,10 +116,13 @@ const FormMain = () => {
     const handleChange = (e, newValue) => {
         setValue(newValue)
     }
+
+
+    
     return (
         <Grid container display="flex" direction="row" justifyContent="center" alignItems="flex-start" sx={{ m: 1, p: 1 }} >
             <TabContext value={value} >
-                <Grid item lg={2}>
+                <Grid item md={2}>
                     <Box sx={{ borderRight: 2, borderColor: "divider", width: "200px" }}>
                         <TabList aria-label="Tab Navigation" orientation="vertical" onChange={handleChange} TabIndicatorProps={{
                             sx: { bgcolor: "red", height: "5px", left: "0px", width: "4px", textTransform: "capitalize" }
@@ -132,7 +135,7 @@ const FormMain = () => {
                         </TabList>
                     </Box>
                 </Grid>
-                <Grid container item lg={10} display="flex" justifyContent="center" >
+                <Grid container item md={10} display="flex" justifyContent="center" >
                     <Paper elevation={10} >
                         <Grid item>
                             <Box sx={{ width: 700, maxHeight: "100%", maxWidth: "100%", }}>

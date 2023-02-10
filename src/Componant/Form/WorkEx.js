@@ -41,12 +41,14 @@ const WorkExp = () => {
                                 helperText={errors.objective ? errors.objective.message : " "}
                             />)}
                     />
+
                 </Box>
             </Grid>
             <Box sx={{ width: "620px", maxWidth: '100%', p: 2 }}>
                 <Typography variant="h5">Work Experience</Typography>
             </Box>
             {fields.map((Item, index) => {
+
                 return (
                     <Grid container p={2} gap={1} key={Item.id}>
                         <Grid container item display="flex" direction="row" justifyContent="space-between" alignItems="center" sx={{ borderBottom: "1px solid #cccccc", mb: 2, pl: 1, borderLeft: '6px solid red' }}>
@@ -54,7 +56,7 @@ const WorkExp = () => {
                                 {`${index + 1}.`}
                             </Grid>
                             <Grid item >
-                                <IconButton color="primary" aria-label="remove from cart" onClick={() => remove(index)}>
+                                <IconButton color="primary" aria-label="remove from cart" onClick={() => index !== 0 ? remove(index) : false}>
                                     <ClearOutlinedIcon />
                                 </IconButton>
                             </Grid>
@@ -64,7 +66,7 @@ const WorkExp = () => {
                                 <Controller
                                     control={control}
                                     name={`companyDetails[${index}].workedProfile`}
-                                    render={({ field }) => (
+                                    render={({ field:{field} }) => (
                                         <TextField
                                             fullWidth
                                             id="workedProfile"
@@ -78,7 +80,6 @@ const WorkExp = () => {
                                 <Controller
                                     control={control}
                                     name={`companyDetails[${index}].companyName`}
-                                    rules={{ required: "Please fill your previous employer" }}
                                     render={({ field }) => (
                                         <TextField
                                             fullWidth
@@ -96,8 +97,7 @@ const WorkExp = () => {
                                 <Controller
                                     control={control}
                                     name={`companyDetails[${index}].companyCity`}
-                                    rules={{ required: "Please fill your previous employment city" }}
-                                    render={({ field}) => (
+                                    render={({ field }) => (
                                         <TextField
                                             fullWidth
                                             id="companyCity"
@@ -111,7 +111,6 @@ const WorkExp = () => {
                                 <Controller
                                     control={control}
                                     name={`companyDetails[${index}].companyState`}
-                                    rules={{ required: "Please fill your previous employment state" }}
                                     render={({ field }) => (
                                         <TextField
                                             fullWidth
@@ -128,7 +127,6 @@ const WorkExp = () => {
                                 <Controller
                                     control={control}
                                     name={`companyDetails[${index}].jobSummary`}
-                                    rules={{ required: "Please mention your job roll above as on your previous job profile" }}
                                     render={({ field }) => (
                                         <TextField
                                             fullWidth
@@ -165,7 +163,7 @@ const WorkExp = () => {
                                 <Controller
                                     control={control}
                                     name={`companyDetails[${index}].jobEnd`}
-                                    render={({ field: { onChange,value, restField } }) => (
+                                    render={({ field: { onChange, value, restField } }) => (
                                         <LocalizationProvider dateAdapter={AdapterDayjs} >
                                             <DatePicker label="End On"
                                                 inputFormat="DD-MM-YYYY"

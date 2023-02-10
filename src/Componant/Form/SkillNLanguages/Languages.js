@@ -38,15 +38,12 @@ const Languages = () => {
                                 <Controller
                                     control={control}
                                     name={`language[${index}].languageName`}
-                                    render={({ field, formState: { errors } }) => (
+                                    render={({ field }) => (
                                         <TextField
                                             fullWidth
                                             label="Language"
                                             variant="standard"
                                             {...field}
-                                            inputRef={register('language')}
-                                            error={Boolean(errors.language)}
-                                            helperText={errors.language ? errors.language.message : " "}
                                         />)}
                                 />
 
@@ -71,7 +68,7 @@ const Languages = () => {
 
                             </Grid>
                             <Grid item sx={{ mt: 2 }}>
-                                <IconButton color="primary" aria-label="remove from cart" onClick={() => remove(index)}>
+                                <IconButton color="primary" aria-label="remove from cart" onClick={() => index !== 0 ? remove(index) : false}>
                                     <ClearOutlinedIcon />
                                 </IconButton>
                             </Grid>

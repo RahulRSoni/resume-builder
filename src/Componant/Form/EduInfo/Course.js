@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useState } from "react";
 import { Box, Grid, Typography, Button, IconButton } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -11,8 +10,7 @@ import { Controller, useFormContext, useFieldArray } from "react-hook-form";
 
 const Course = () => {
 
-    const [certificateDate, setCertificateDate] = useState(null);
-    const { control, register } = useFormContext();
+    const { control } = useFormContext();
     const { fields, append, remove } = useFieldArray({
         name: "courseDetails",
     });
@@ -31,7 +29,7 @@ const Course = () => {
                                     {`${index + 1}.`}
                                 </Grid>
                                 <Grid item >
-                                    <IconButton color="primary" aria-label="remove from cart" onClick={() => remove(index)}>
+                                    <IconButton color="primary" aria-label="remove from cart" onClick={() => index !== 0 ? remove(index) : false}>
                                         <ClearOutlinedIcon />
                                     </IconButton>
                                 </Grid>
@@ -40,50 +38,45 @@ const Course = () => {
                                 <Grid item sm={6}>
                                     <Controller
                                         control={control}
-                                        name={`courseDetails[${index}].qualification`}
-                                        render={({ field, formState: { errors } }) => (
+                                        name={`courseDetails[${index}].courseName`}
+                                        render={({ field}) => (
                                             <TextField
                                                 fullWidth
-                                                label="Qualification"
+                                                label="Course Name"
                                                 variant="standard"
                                                 {...field}
-                                                inputRef={register('qualification')}
-                                                error={Boolean(errors.qualification)}
-                                                helperText={errors.qualification ? errors.qualification.message : " "}
                                             />)}
                                     />
                                 </Grid>
                                 <Grid item sm={6}>
                                     <Controller
                                         control={control}
-                                        name={`courseDetails[${index}].university`}
-                                        render={({ field, formState: { errors } }) => (
+                                        name={`courseDetails[${index}].courseBy`}
+                                        render={({ field }) => (
                                             <TextField
                                                 fullWidth
-                                                label="University / School"
+                                                label="Course By"
                                                 variant="standard"
                                                 {...field}
-                                                inputRef={register('university')}
-                                                error={Boolean(errors.university)}
-                                                helperText={errors.university ? errors.university.message : " "}
                                             />)}
                                     />
                                 </Grid>
                             </Grid>
-                            <Grid container item display="flex" direction="row" spacing={2} sm={8}>
+                            <Grid container item display="flex" direction="row" spacing={2} sm={6}>
                                 <Grid item sm={6}>
                                     <Controller
                                         control={control}
-                                        name={`courseDetails[${index}].certificateDate`}
-                                        render={({ field: { onChange } }) => (
+                                        name={`courseDetails[${index}].certificateDate2`}
+                                        render={({ field: { onChange, value, restField } }) => (
                                             <LocalizationProvider dateAdapter={AdapterDayjs} >
                                                 <DatePicker
                                                     label="Certificate Date"
-                                                    value={certificateDate}
+                                                    value={value}
                                                     inputFormat="DD-MM-YYYY"
-                                                    onChange={(newValue) => { setCertificateDate(newValue); onChange(newValue) }}
+                                                    onChange={(newValue) => { onChange(newValue) }}
                                                     renderInput={(params) => <TextField
                                                         {...params}
+                                                        {...restField}
                                                         variant="standard" />} />
                                             </LocalizationProvider>
                                         )}
@@ -92,15 +85,12 @@ const Course = () => {
                                 <Grid item sm={6}>
                                     <Controller
                                         control={control}
-                                        name={`courseDetails[${index}].grade`}
-                                        render={({ field, formState: { errors } }) => (
+                                        name={`courseDetails[${index}].grade2`}
+                                        render={({ field }) => (
                                             <TextField fullWidth
-                                                label="Grade/Percentage%"
+                                                label="Grade"
                                                 variant="standard"
                                                 {...field}
-                                                inputRef={register('grade')}
-                                                error={Boolean(errors.grade)}
-                                                helperText={errors.grade ? errors.grade.message : " "}
                                             />)}
                                     />
                                 </Grid>
@@ -114,7 +104,7 @@ const Course = () => {
                     append({
                         courseName: "",
                         courseBy: "",
-                        certificateDate2: "",
+                        certificateDate2: null,
                         grade2: "",
                     });
                 }}>

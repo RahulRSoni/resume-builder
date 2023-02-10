@@ -14,7 +14,7 @@ import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 
 const OtherInfo = () => {
 
-    const { control, register } = useFormContext();
+    const { control } = useFormContext();
 
     const { fields, append, remove } = useFieldArray({
         name: "references",
@@ -34,7 +34,7 @@ const OtherInfo = () => {
                             <Controller
                                 control={control}
                                 name="link1"
-                                render={({ field, formState: { errors } }) => (
+                                render={({ field }) => (
                                     <TextField
                                         fullWidth
                                         id="link1"
@@ -42,7 +42,6 @@ const OtherInfo = () => {
                                         variant="standard"
                                         InputProps={{ startAdornment: (<InputAdornment position="start"> <InstagramIcon /> </InputAdornment>), }}
                                         {...field}
-                                        inputRef={register('link1')}
                                     />)}
                             />
 
@@ -52,7 +51,7 @@ const OtherInfo = () => {
                             <Controller
                                 control={control}
                                 name="link2"
-                                render={({ field, formState: { errors } }) => (
+                                render={({ field }) => (
                                     <TextField
                                         fullWidth
                                         id="link2"
@@ -60,7 +59,6 @@ const OtherInfo = () => {
                                         variant="standard"
                                         InputProps={{ startAdornment: (<InputAdornment position="start"> <FacebookOutlinedIcon /> </InputAdornment>), }}
                                         {...field}
-                                        inputRef={register('link2')}
                                     />)}
                             />
                         </Grid>
@@ -73,7 +71,7 @@ const OtherInfo = () => {
                             <Controller
                                 control={control}
                                 name="link3"
-                                render={({ field, formState: { errors } }) => (
+                                render={({ field }) => (
                                     <TextField
                                         fullWidth
                                         id="link3"
@@ -81,7 +79,6 @@ const OtherInfo = () => {
                                         variant="standard"
                                         InputProps={{ startAdornment: (<InputAdornment position="start"> <TwitterIcon /> </InputAdornment>), }}
                                         {...field}
-                                        inputRef={register('link3')}
                                     />)}
                             />
 
@@ -91,7 +88,7 @@ const OtherInfo = () => {
                             <Controller
                                 control={control}
                                 name="link4"
-                                render={({ field, formState: { errors } }) => (
+                                render={({ field }) => (
                                     <TextField
                                         fullWidth
                                         id="link4"
@@ -99,7 +96,6 @@ const OtherInfo = () => {
                                         variant="standard"
                                         InputProps={{ startAdornment: (<InputAdornment position="start"> <LinkedInIcon /> </InputAdornment>), }}
                                         {...field}
-                                        inputRef={register('link4')}
                                     />)}
                             />
                         </Grid>
@@ -112,7 +108,7 @@ const OtherInfo = () => {
                             <Controller
                                 control={control}
                                 name="link5"
-                                render={({ field, formState: { errors } }) => (
+                                render={({ field }) => (
                                     <TextField
                                         fullWidth
                                         id="link5"
@@ -120,7 +116,7 @@ const OtherInfo = () => {
                                         variant="standard"
                                         InputProps={{ startAdornment: (<InputAdornment position="start"> <YouTubeIcon /> </InputAdornment>), }}
                                         {...field}
-                                        inputRef={register('link5')}
+
                                     />)}
                             />
 
@@ -131,7 +127,7 @@ const OtherInfo = () => {
                             <Controller
                                 control={control}
                                 name="link6"
-                                render={({ field, formState: { errors } }) => (
+                                render={({ field }) => (
                                     <TextField
                                         fullWidth
                                         id="link6"
@@ -139,7 +135,6 @@ const OtherInfo = () => {
                                         variant="standard"
                                         InputProps={{ startAdornment: (<InputAdornment position="start"> <GitHubIcon /> </InputAdornment>), }}
                                         {...field}
-                                        inputRef={register('link6')}
                                     />)}
                             />
 
@@ -160,14 +155,13 @@ const OtherInfo = () => {
                             <Controller
                                 control={control}
                                 name="hobbies"
-                                render={({ field, formState: { errors } }) => (
+                                render={({ field }) => (
                                     <TextField
                                         fullWidth
                                         id="hobbies"
                                         label="What do you like?"
                                         variant="standard"
                                         {...field}
-                                        inputRef={register('hobbies')}
                                     />)}
                             />
                         </Box>
@@ -185,7 +179,7 @@ const OtherInfo = () => {
                                 {`${index + 1}.`}
                             </Grid>
                             <Grid item >
-                                <IconButton color="primary" aria-label="remove from cart" onClick={() => remove(index)}>
+                                <IconButton color="primary" aria-label="remove from cart" onClick={() => index !== 0 ? remove(index) : false}>
                                     <ClearOutlinedIcon />
                                 </IconButton>
                             </Grid>
@@ -196,14 +190,13 @@ const OtherInfo = () => {
                                 <Controller
                                     control={control}
                                     name={`references[${index}].RefName`}
-                                    render={({ field, formState: { errors } }) => (
+                                    render={({ field }) => (
                                         <TextField
                                             fullWidth
                                             id="RefName"
                                             label="Referent Person"
                                             variant="standard"
                                             {...field}
-                                            inputRef={register('RefName')}
                                         />)}
                                 />
                             </Grid>
@@ -211,14 +204,13 @@ const OtherInfo = () => {
                                 <Controller
                                     control={control}
                                     name={`references[${index}].RefDetail`}
-                                    render={({ field, formState: { errors } }) => (
+                                    render={({ field }) => (
                                         <TextField
                                             fullWidth
                                             id="RefDetail"
                                             label="Organization Name (Job Profile)"
                                             variant="standard"
                                             {...field}
-                                            inputRef={register('RefDetail')}
                                         />)}
                                 />
                             </Grid>
@@ -229,14 +221,13 @@ const OtherInfo = () => {
                                     <Controller
                                         control={control}
                                         name={`references[${index}].RefEmail`}
-                                        render={({ field, formState: { errors } }) => (
+                                        render={({ field }) => (
                                             <TextField
                                                 fullWidth
                                                 id="RefEmail"
                                                 label="Email"
                                                 variant="standard"
                                                 {...field}
-                                                inputRef={register('RefEmail')}
                                             />)}
                                     />
                                 </Box >
@@ -246,7 +237,7 @@ const OtherInfo = () => {
                                     <Controller
                                         control={control}
                                         name={`references[${index}].RefMobile`}
-                                        render={({ field, formState: { errors } }) => (
+                                        render={({ field }) => (
                                             <TextField
                                                 fullWidth
                                                 id="RefMobile"
@@ -254,7 +245,6 @@ const OtherInfo = () => {
                                                 inputProps={{ type: 'number', pattern: '[0-9]*', step: "none" }}
                                                 variant="standard"
                                                 {...field}
-                                                inputRef={register('RefMobile')}
                                             />)}
                                     />
                                 </Box >

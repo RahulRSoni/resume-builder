@@ -36,16 +36,13 @@ const Skill = () => {
                             <Controller
                                 control={control}
                                 name={`keySkill[${index}].skill`}
-                                render={({ field, formState: { errors } }) => (
+                                render={({ field }) => (
                                     <TextField
                                         fullWidth
                                         id="keySkill"
                                         label="Skill"
                                         variant="standard"
                                         {...field}
-                                        inputRef={register("skill")}
-                                        error={Boolean(errors.skill)}
-                                        helperText={errors.skill ? errors.skill.message : " "}
                                     />
                                 )}
                             />
@@ -67,13 +64,13 @@ const Skill = () => {
                                     )}
                                 />
                             </FormControl>
-                            
+
                         </Grid>
                         <Grid item sx={{ mt: 2 }}>
                             <IconButton
                                 color="primary"
                                 aria-label="remove from cart"
-                                onClick={() => remove(index)}
+                                onClick={() => index !== 0 ? remove(index) : false}
                             >
                                 <ClearOutlinedIcon />
                             </IconButton>

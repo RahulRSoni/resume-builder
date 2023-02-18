@@ -10,8 +10,9 @@ import SkillNLanguages from "./SkillNLanguages"
 import OtherInfo from "./OtherInfo"
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-
+import { useDispatch } from 'react-redux'
 import { FormProvider, useForm } from 'react-hook-form'
+import { addJobTitle } from "../../Redux/formSlice/formSlice"
 
 const FormMain = () => {
 
@@ -115,8 +116,9 @@ const FormMain = () => {
             setValue(str)
             changeButtonText(value)
             console.log(data)
+            dispatch(addJobTitle(formMethod.control._formValues))
         }
-    }
+     }
 
     const handleBack = () => {
         let genValue = Number(value)
@@ -129,7 +131,7 @@ const FormMain = () => {
         setValue(newValue)
     }
 
-
+    const dispatch = useDispatch()
 
     return (
         <ThemeProvider theme={theme}>
@@ -137,7 +139,7 @@ const FormMain = () => {
                 <TabContext value={value} >
                     <Grid item md={2}>
                         <Box sx={{ borderRight: 2, borderColor: "divider", width: "200px" }}>
-                            <TabList aria-label="Tab Navigation" orientation={ `theme.breakpoints.keys[2] === "md" ? "vertical" : ""`} onChange={handleChange} TabIndicatorProps={{
+                            <TabList aria-label="Tab Navigation" orientation="vertical" onChange={handleChange} TabIndicatorProps={{
                                 sx: { bgcolor: "red", height: "5px", left: "0px", width: "4px", textTransform: "capitalize" }
                             }}>
                                 <Tab label="Personal Information" value="0" sx={{ textTransform: "capitalize" }} />
@@ -167,7 +169,7 @@ const FormMain = () => {
                             <Grid container item direction="row" justifyContent="space-between" alignItems="center" mx={1} p={2}>
                                 <Button color="inherit" startIcon={<ArrowBackIosIcon />} disabled={value === "0"} onClick={() => handleBack()}>
                                     Back
-                                    {console.log(theme.breakpoints)}
+
                                 </Button>
                                 <Button type="submit" form="nextButton" endIcon={<ArrowForwardIosIcon />} disabled={value > 5 ? true : false} >
                                     {buttonText}
@@ -185,3 +187,6 @@ const FormMain = () => {
 }
 
 export default FormMain
+
+
+                                    // {console.log(theme.breakpoints)}
